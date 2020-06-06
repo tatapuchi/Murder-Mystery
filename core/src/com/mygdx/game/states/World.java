@@ -13,12 +13,19 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.mygdx.game.entities.April;
+import com.mygdx.game.entities.Barney;
+import com.mygdx.game.entities.Bruce;
 import com.mygdx.game.entities.Dialogue;
 import com.mygdx.game.entities.Entity;
+import com.mygdx.game.entities.Esther;
 import com.mygdx.game.entities.Ethan;
 import com.mygdx.game.entities.Hank;
+import com.mygdx.game.entities.Rachel;
 import com.mygdx.game.entities.Player;
+import com.mygdx.game.entities.Scarlet;
 import com.mygdx.game.entities.TicketChecker;
+import com.mygdx.game.entities.Titus;
 import com.mygdx.game.management.GameStateManager;
 import com.mygdx.game.management.State;
 import com.mygdx.game.utilities.CameraUtilities;
@@ -75,10 +82,20 @@ public class World extends State {
         stage.addActor(background);
 //        stage.addActor(Desk);
 
+        //NPCS and Player
         TicketChecker.getTicketChecker().drawbody(stage);
         Ethan.getEthan().drawbody(stage);
         Hank.getHank().drawbody(stage);
+        April.getApril().drawbody(stage);
+        Esther.getEsther().drawbody(stage);
+        Rachel.getRachel().drawbody(stage);
+        Scarlet.getScarlet().drawbody(stage);
+        Bruce.getBruce().drawbody(stage);
+        Barney.getBarney().drawbody(stage);
+        Titus.getTitus().drawbody(stage);
         Player.getPlayer().drawbody(stage);
+
+
         Gdx.graphics.setCursor(Gdx.graphics.newCursor(pm, 0, 0));
         Gdx.input.setInputProcessor(inputMultiplexer);
 
@@ -102,6 +119,13 @@ public class World extends State {
         TicketChecker.getTicketChecker().update(dt);
         Ethan.getEthan().update(dt);
         Hank.getHank().update(dt);
+        April.getApril().update(dt);
+        Esther.getEsther().update(dt);
+        Rachel.getRachel().update(dt);
+        Scarlet.getScarlet().update(dt);
+        Bruce.getBruce().update(dt);
+        Barney.getBarney().update(dt);
+        Titus.getTitus().update(dt);
     }
 
     @Override

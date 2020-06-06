@@ -45,7 +45,7 @@ public class Player implements Entity{
 
 
         runActor.getEffect().findEmitter("Sparticle").scaleSize(0.25f);
-        runActor.getEffect().findEmitter("Sparticle").getTint().setColors(new float[]{0.4f, 0.24f, 0.3f, 1f});
+        runActor.getEffect().findEmitter("Sparticle").getTint().setColors(new float[]{0.18f, 0.12f, 0.06f, 1f});
 
         body.setHSV(360,0.3f, 1f);
         lighting.setHSV(345,0.3f, 1f);
