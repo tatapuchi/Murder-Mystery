@@ -29,6 +29,7 @@ public class FontActor extends Actor {
         fontParamter.size = size;
         fontParamter.flip = flip;
         this.font = generator.generateFont(fontParamter);
+
     }
 
 

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.entities.Player;
 
 public class CameraUtilities {
 
@@ -27,6 +28,29 @@ public class CameraUtilities {
         camera.update();
     }
 
+    //Basic Camera that lags behing the player but catches up
+    public static void TrainCamera(Camera camera, Vector2 target) {
+        // a + (b - a) * lerp factor
+        Vector3 position = camera.position;
+
+//        position.y = camera.position.y + (target.y - camera.position.y) * 0.06f;
+        position.y = (target.y) / 2;
+        if(Player.getPlayer().getPostionX() < 1800){
+//            position.x = 800;
+            int avg = (1780 + Player.getPlayer().getPostionX())/2;
+            position.x = camera.position.x + (avg - camera.position.x) * 0.06f;//0.1f to 0.075f
+
+        }else if(Player.getPlayer().getPostionX() > 6800) {
+            int avg = (6880 + Player.getPlayer().getPostionX())/2;
+            position.x = camera.position.x + (avg - camera.position.x) * 0.06f;//0.1f to 0.075f
+//            position.x = 7385;
+            }
+        else{
+            position.x = camera.position.x + (target.x - camera.position.x) * 0.06f;//0.1f to 0.075f
+        }
+        camera.position.set(position);
+        camera.update();
+    }
 
     public static void lockAverageBetweenTargets(Camera camera, Vector2 targetA, Vector2 targetB) {
         Vector3 position = camera.position;

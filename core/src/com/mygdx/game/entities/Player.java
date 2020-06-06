@@ -6,15 +6,17 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.mygdx.game.utilities.scene2d.CustomActor;
 import com.mygdx.game.utilities.scene2d.CustomAnimation;
 import com.mygdx.game.utilities.scene2d.ParticleActor;
 import com.mygdx.game.management.BolbManager;
 
 import java.util.Random;
 
-public class Player {
+public class Player implements Entity{
 
     public static final Player player = new Player();
+    public static final Player icon = new Player();
 
     private CustomAnimation body, hair, eyes, lighting, hairshine, move, legs;
     private ParticleActor runActor;
@@ -24,10 +26,10 @@ public class Player {
     private Player() {
 
         bolbManager = new BolbManager();
-        bolbManager.loadPlayer();
+        bolbManager.loadCharacter();
 
-        X = 180;
-        Y = -0;
+        X = 1880;
+        Y = 0;
 
         ParticleEffect runEffect = new ParticleEffect();
         runEffect.load(Gdx.files.internal("Environment/Sparticle"), Gdx.files.internal("Environment"));
@@ -52,11 +54,23 @@ public class Player {
         legs.setHSV(360,0.3f, 1f);
         move.setHSV(360,0.3f, 1f);
         hairshine.setHSV(0,0f,1f);
+
     }
 
     public static Player getPlayer() {
         return player;
     }
+
+    public static Player getPlayerIcon() {
+        return icon;
+    }
+
+    public void setIconPosition(int x, int y){
+        Player.this.X = x;
+        Player.this.Y = y;
+
+    }
+
 
     public void update(float dt) {
 
@@ -69,7 +83,19 @@ public class Player {
         move.setPosition(Player.this.X, Player.this.Y);
 
 
+        if(Player.this.Y > 620){
+            Player.this.Y = 620;
+        }
+        if(Player.this.Y < 0){
+            Player.this.Y = 0;
+        }
 
+        if(Player.this.X < -170){
+            Player.this.X = -170;
+        }
+        if(Player.this.X > 7900){
+            Player.this.X = 7900;
+        }
         if (Right() && Gdx.input.isKeyPressed(Input.Keys.D)) {
             Player.getPlayer().flip();
         }
@@ -151,7 +177,7 @@ public class Player {
         }
     }
 
-    private void flip() {
+    public void flip() {
         Player.getPlayer().body.getAnimation().getFrame().flip(true, false);
         Player.getPlayer().lighting.getAnimation().getFrame().flip(true, false);
         Player.getPlayer().hair.getAnimation().getFrame().flip(true, false);
@@ -188,12 +214,12 @@ public class Player {
 //    }
 
     public int getPostionX() {
-        return this.X + 200;
+        return this.X;
     }
 
 
     public int getPostionY() {
-        return this.Y + 170;
+        return this.Y;
     }
 
 
@@ -204,4 +230,10 @@ public class Player {
         return random.nextFloat();
 
     }
+
+    @Override
+    public Vector2 getPosition() {
+        return new Vector2(getPostionX(), getPostionY());
+    }
+
 }

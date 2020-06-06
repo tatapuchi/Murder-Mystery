@@ -14,10 +14,12 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.foregroundFPS = FPS;
 		config.backgroundFPS = FPS;
-		config.vSyncEnabled = true;
+//		config.vSyncEnabled = true;
 		config.title = TITLE;
-		config.width = WIDTH;
-		config.height = HEIGHT;
+//		config.width = WIDTH;
+//		config.height = HEIGHT;
+		config.width = LwjglApplicationConfiguration.getDesktopDisplayMode().width;
+		config.height = LwjglApplicationConfiguration.getDesktopDisplayMode().height;
 //		config.fullscreen = true;
 		new LwjglApplication(new Game(), config);
 	}

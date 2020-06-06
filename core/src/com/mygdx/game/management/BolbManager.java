@@ -20,6 +20,7 @@ public class BolbManager extends AssetManager {
     public static final AssetDescriptor<Texture> Eyes = new AssetDescriptor<Texture>("Entities/Player/Eyes/Eyes-Animation.png", Texture.class);
     public static final AssetDescriptor<Texture> Lighting = new AssetDescriptor<Texture>("Entities/Player/Lighting-Animation.png", Texture.class);
 
+
     public static final AssetDescriptor<Texture> DefaultHair = new AssetDescriptor<Texture>("Entities/Player/Hair/Default-Hair.png", Texture.class);
     public static final AssetDescriptor<Texture> DefaultHairShine = new AssetDescriptor<Texture>("Entities/Player/Hair/Default-Hair-Shine.png", Texture.class);
     public static final AssetDescriptor<Texture> JesterHair = new AssetDescriptor<Texture>("Entities/Player/Hair/Jester-Hair.png", Texture.class);
@@ -45,7 +46,7 @@ public class BolbManager extends AssetManager {
         finishLoading();
     }
 
-    public void loadPlayer() {
+    public void loadCharacter() {
         load(DefaultHair);
         load(DefaultHairShine);
         load(JesterHair);
@@ -60,7 +61,6 @@ public class BolbManager extends AssetManager {
         // blocks until all resources are loaded into memory
         finishLoading();
     }
-
     public void loadHUD() {
         load(Health);
         load(HealthBar);
