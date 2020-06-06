@@ -30,7 +30,6 @@ public class Player implements Entity{
 
         X = 1880;
         Y = 0;
-
         ParticleEffect runEffect = new ParticleEffect();
         runEffect.load(Gdx.files.internal("Environment/Sparticle"), Gdx.files.internal("Environment"));
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Player.this.X, Player.this.Y);

@@ -18,7 +18,7 @@ public class Dialogue{
 
     private static Texture dialogueBox = new Texture("HUD/Dialogue-Box.png");
     private static TextureRegion dialogueRegion = new TextureRegion(dialogueBox);
-    private static final CustomActor dialogueActor = new CustomActor(dialogueRegion, 1000,100, 0,0);
+    private static final CustomActor dialogueActor = new CustomActor(dialogueRegion, 2500,150, 0,0);
     private static final FontActor font = new FontActor("hi, welcome","Font/font.ttf", 12, false);
 
 
@@ -29,29 +29,24 @@ public class Dialogue{
         stage.addActor(dialogueActor);
         stage.addActor(font);
 
-        dialogueActor.setVisible(false);
-
-        font.setVisible(false);
-        font.setPosition(100,100);
+//        dialogueActor.setVisible(false);
+//        font.setVisible(false);
+        font.setPosition(30,140);
     }
 
-    public static void activateDialogue(String [] a){
+    public static void activateDialogue(){
         dialogueActor.setVisible(true);
         font.setVisible(true);
-        int i = 0;
-        while (true){
-            font.setText(a[i]);
-            if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
-                i++;
-                font.setText(a[i]);
-            }
-            if(i > a.length){
-                break;
-            }
-
-        }
     }
 
+    public static void deactivateDialogue(){
+        dialogueActor.setVisible(false);
+        font.setVisible(false);
+    }
+
+    public static void setText(String text){
+        font.setText(text);
+    }
 
 
 }
