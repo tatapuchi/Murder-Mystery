@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -43,6 +44,7 @@ public class World extends State {
 
     public World(final GameStateManager gsm) {
         super(gsm);
+        Pixmap pm = new Pixmap(Gdx.files.internal("HUD/Cursor.png"));
         windEffect = new ParticleEffect();
         windEffect.load(Gdx.files.internal("Environment/Sparticle"), Gdx.files.internal("Environment"));
         wind = new ParticleActor(windEffect, 8192, 900);
@@ -75,7 +77,7 @@ public class World extends State {
         TicketChecker.getTicketChecker().drawbody(stage);
         Ethan.getEthan().drawbody(stage);
         Player.getPlayer().drawbody(stage);
-//        Gdx.graphics.setCursor(Gdx.graphics.newCursor(pm, 0, 0));
+        Gdx.graphics.setCursor(Gdx.graphics.newCursor(pm, 0, 0));
         Gdx.input.setInputProcessor(inputMultiplexer);
 
     }

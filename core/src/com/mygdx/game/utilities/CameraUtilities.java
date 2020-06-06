@@ -34,7 +34,7 @@ public class CameraUtilities {
         Vector3 position = camera.position;
 
 //        position.y = camera.position.y + (target.y - camera.position.y) * 0.06f;
-        position.y = (target.y) / 2;
+        position.y = (target.y) / 2.15f;
         if(Player.getPlayer().getPostionX() < 1800){
 //            position.x = 800;
             int avg = (1780 + Player.getPlayer().getPostionX())/2;

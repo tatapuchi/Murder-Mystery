@@ -1,18 +1,14 @@
 package com.mygdx.game.entities;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.mygdx.game.utilities.scene2d.CustomAnimation;
-import com.mygdx.game.utilities.scene2d.ParticleActor;
 import com.mygdx.game.management.BolbManager;
+import com.mygdx.game.utilities.scene2d.CustomAnimation;
 
 import java.util.Random;
 
-public class Ethan implements Entity{
+public class Ethan implements Entity {
 
     public static final Ethan ethan = new Ethan();
 
@@ -37,12 +33,12 @@ public class Ethan implements Entity{
         hairshine = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.DefaultHairShine)), 3, 0.4f, 455, 382, Ethan.this.X, Ethan.this.Y);
         legs = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Legs)), 3, 0.4f, 455, 382, Ethan.this.X, Ethan.this.Y);
 
-        body.setHSV(360,0.14f, 1f);
-        lighting.setHSV(345,0.3f, 1f);
-        eyes.setHSV(0,0f, 0f);
-        hair.setHSV(39,0.5f, 1f);
-        legs.setHSV(360,0.3f, 1f);
-        hairshine.setHSV(0,0f,1f);
+        body.setHSV(360, 0.14f, 1f);
+        lighting.setHSV(345, 0.3f, 1f);
+        eyes.setHSV(0, 0f, 0f);
+        hair.setHSV(39, 0.5f, 1f);
+        legs.setHSV(360, 0.3f, 1f);
+        hairshine.setHSV(0, 0f, 1f);
 
 
     }
@@ -59,11 +55,7 @@ public class Ethan implements Entity{
         lighting.setPosition(Ethan.this.X, Ethan.this.Y);
         hairshine.setPosition(Ethan.this.X, Ethan.this.Y);
         legs.setPosition(Ethan.this.X, Ethan.this.Y);
-        String [] a = {"hi","smol talk","goodbye forever"};
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
-            Dialogue.activateDialogue(a);
-        }
     }
 
     private void up() {
@@ -112,12 +104,12 @@ public class Ethan implements Entity{
     }
 
     public int getPostionX() {
-        return this.X + 200;
+        return this.X;
     }
 
 
     public int getPostionY() {
-        return this.Y + 170;
+        return this.Y;
     }
 
 
@@ -128,6 +120,7 @@ public class Ethan implements Entity{
         return random.nextFloat();
 
     }
+
     @Override
     public Vector2 getPosition() {
         return new Vector2(getPostionX(), getPostionY());
