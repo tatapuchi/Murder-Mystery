@@ -19,8 +19,9 @@ public class Dialogue{
     private static Texture dialogueBox = new Texture("HUD/Dialogue-Box.png");
     private static TextureRegion dialogueRegion = new TextureRegion(dialogueBox);
     private static final CustomActor dialogueActor = new CustomActor(dialogueRegion, 2500,150, 0,0);
-    private static final FontActor font = new FontActor("hi, welcome","Font/font.ttf", 12, false);
-
+    private static final FontActor font = new FontActor("","Font/font.ttf", 16, false);
+    private static int i = 0;
+    private static boolean finish = false;
 
     private Dialogue() {
     }
@@ -29,8 +30,8 @@ public class Dialogue{
         stage.addActor(dialogueActor);
         stage.addActor(font);
 
-//        dialogueActor.setVisible(false);
-//        font.setVisible(false);
+        dialogueActor.setVisible(false);
+        font.setVisible(false);
         font.setPosition(30,140);
     }
 
@@ -48,5 +49,43 @@ public class Dialogue{
         font.setText(text);
     }
 
+
+    public static void initDialogue(final String[] strings) {
+        if (!finish) {
+            if (i < strings.length) {
+                    Gdx.input.setInputProcessor(new InputAdapter() {
+                        @Override
+                        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                            Dialogue.activateDialogue();
+                            Dialogue.setText(strings[i]);
+                            i++;
+                            return super.touchDown(screenX, screenY, pointer, button);
+
+                        }
+                    });
+
+            } else if (i >= strings.length) {
+                end();
+                i = 0;
+                Dialogue.deactivateDialogue();
+
+
+            }
+
+        }
+
+    }
+    public static void reset(){finish = false;}
+    public static void end(){finish = true;}
+    public static boolean isFinished(){return finish;}
+
+
+    public static final String[] Ethan_Dialogue_1 = {
+            "Ethan: Hi there, I'm Ethan. What a calm and unsuspicious train ride is it not?",
+            "Ethan: Yes, nothing could go wrong on this peaceful train ride.",
+            "You: Yes, I also like trains",
+            "Ethan: Epic",
+            ""
+    };
 
 }

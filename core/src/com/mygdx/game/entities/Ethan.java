@@ -1,5 +1,8 @@
 package com.mygdx.game.entities;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,9 +18,12 @@ public class Ethan implements Entity {
     private CustomAnimation body, hair, eyes, lighting, hairshine, legs;
     private int X, Y;
     BolbManager bolbManager;
-    private boolean interact;
+    int i;
+    String[] a = {"", "sdg", "lmg", "frth", "dog", "car", "java", "hamsetr"};
 
     private Ethan() {
+
+        i = 0;
 
         bolbManager = new BolbManager();
         bolbManager.loadCharacter();
@@ -49,6 +55,7 @@ public class Ethan implements Entity {
 
     public void update(float dt) {
 
+
         body.setPosition(Ethan.this.X, Ethan.this.Y);
         eyes.setPosition(Ethan.this.X, Ethan.this.Y);
         hair.setPosition(Ethan.this.X, Ethan.this.Y);
@@ -56,7 +63,11 @@ public class Ethan implements Entity {
         hairshine.setPosition(Ethan.this.X, Ethan.this.Y);
         legs.setPosition(Ethan.this.X, Ethan.this.Y);
 
+            Dialogue.initDialogue(Dialogue.Ethan_Dialogue_1);
+
+
     }
+
 
     private void up() {
         Y += 6;
@@ -118,13 +129,17 @@ public class Ethan implements Entity {
         Random random = new Random();
 
         return random.nextFloat();
-
-    }
-
-    @Override
-    public Vector2 getPosition() {
-        return new Vector2(getPostionX(), getPostionY());
     }
 
 
-}
+
+
+        @Override
+        public Vector2 getPosition () {
+            return new Vector2(getPostionX(), getPostionY());
+        }
+
+
+    }
+
+
