@@ -22,6 +22,7 @@ public class Player implements Entity{
     private ParticleActor runActor;
     private int X, Y;
     BolbManager bolbManager;
+    public static int interact = 0;
 
     private Player() {
 
@@ -44,7 +45,7 @@ public class Player implements Entity{
 
 
         runActor.getEffect().findEmitter("Sparticle").scaleSize(0.25f);
-        runActor.getEffect().findEmitter("Sparticle").getTint().setColors(new float[]{0.55f, 0.43f, 0.24f, 1f});
+        runActor.getEffect().findEmitter("Sparticle").getTint().setColors(new float[]{0.4f, 0.24f, 0.3f, 1f});
 
         body.setHSV(360,0.3f, 1f);
         lighting.setHSV(345,0.3f, 1f);
@@ -59,6 +60,7 @@ public class Player implements Entity{
     public static Player getPlayer() {
         return player;
     }
+
 
     public static Player getPlayerIcon() {
         return icon;

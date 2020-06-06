@@ -22,6 +22,7 @@ public class Dialogue{
     private static final FontActor font = new FontActor("","Font/font.ttf", 16, false);
     private static int i = 0;
     private static boolean finish = false;
+    public static int progress = 0;
 
     private Dialogue() {
     }
@@ -50,31 +51,8 @@ public class Dialogue{
     }
 
 
-    public static void initDialogue(final String[] strings) {
-        if (!finish) {
-            if (i < strings.length) {
-                    Gdx.input.setInputProcessor(new InputAdapter() {
-                        @Override
-                        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                            Dialogue.activateDialogue();
-                            Dialogue.setText(strings[i]);
-                            i++;
-                            return super.touchDown(screenX, screenY, pointer, button);
-
-                        }
-                    });
-
-            } else if (i >= strings.length) {
-                end();
-                i = 0;
-                Dialogue.deactivateDialogue();
 
 
-            }
-
-        }
-
-    }
     public static void reset(){finish = false;}
     public static void end(){finish = true;}
     public static boolean isFinished(){return finish;}

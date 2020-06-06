@@ -18,18 +18,17 @@ public class Ethan implements Entity {
     private CustomAnimation body, hair, eyes, lighting, hairshine, legs;
     private int X, Y;
     BolbManager bolbManager;
-    int i;
-    String[] a = {"", "sdg", "lmg", "frth", "dog", "car", "java", "hamsetr"};
+    int level = 0;
+    int stage = 0;
 
     private Ethan() {
 
-        i = 0;
 
         bolbManager = new BolbManager();
         bolbManager.loadCharacter();
 
         X = 1840;
-        Y = 160;
+        Y = 580;
 
 
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Ethan.this.X, Ethan.this.Y);
@@ -63,9 +62,84 @@ public class Ethan implements Entity {
         hairshine.setPosition(Ethan.this.X, Ethan.this.Y);
         legs.setPosition(Ethan.this.X, Ethan.this.Y);
 
-            Dialogue.initDialogue(Dialogue.Ethan_Dialogue_1);
+//            Dialogue.initDialogue(Dialogue.Ethan_Dialogue_1);
+
+        if(Ethan.getEthan().getPosition().x - Player.getPlayer().getPosition().x < 196 && Ethan.getEthan().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
+                Ethan.getEthan().getPosition().y - Player.getPlayer().getPosition().y < 196 && Ethan.getEthan().getPosition().y - Player.getPlayer().getPosition().y > - 196){
+            handleDialogue();
+        }
 
 
+        }
+
+
+
+
+    public void handleDialogue(){
+        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+            Dialogue.activateDialogue();
+            level++;
+        }
+        if(stage == 0) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Ethan: Hi there. Do you not also find that this train is completely ordinary and safe?");
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Ethan: Yes, Nothing could go wrong on this train, that is for sure!");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: I have no idea what you are talking about");
+                    break;
+                case 7:
+                case 8:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Ethan: CHEESE SANDWICH!");
+                    break;
+                case 9:
+                case 10:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: CHEESE SANDWICH!");
+                    break;
+                case 11:
+                case 12:
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 13:
+                case 14:
+                    level = 0;
+                    stage ++;
+
+            }
+        }
+        if(stage == 1){
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Ethan: Cheez gang?");
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: CHEEZ GANGG!");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 7:
+                case 8:
+                    level = 0;
+                    break;
+            }
+        }
     }
 
 

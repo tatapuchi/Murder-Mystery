@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.mygdx.game.entities.Dialogue;
 import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.Ethan;
+import com.mygdx.game.entities.Hank;
 import com.mygdx.game.entities.Player;
 import com.mygdx.game.entities.TicketChecker;
 import com.mygdx.game.management.GameStateManager;
@@ -76,6 +77,7 @@ public class World extends State {
 
         TicketChecker.getTicketChecker().drawbody(stage);
         Ethan.getEthan().drawbody(stage);
+        Hank.getHank().drawbody(stage);
         Player.getPlayer().drawbody(stage);
         Gdx.graphics.setCursor(Gdx.graphics.newCursor(pm, 0, 0));
         Gdx.input.setInputProcessor(inputMultiplexer);
@@ -99,6 +101,7 @@ public class World extends State {
         Player.getPlayer().update(dt);
         TicketChecker.getTicketChecker().update(dt);
         Ethan.getEthan().update(dt);
+        Hank.getHank().update(dt);
     }
 
     @Override

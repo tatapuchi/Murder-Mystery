@@ -1,6 +1,7 @@
 package com.mygdx.game.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -18,7 +19,7 @@ public class TicketChecker implements Entity{
     private CustomAnimation body, hair, eyes, lighting, hairshine, legs;
     private int X, Y;
     BolbManager bolbManager;
-    private boolean interact;
+    private int level, stage;
 
     private TicketChecker() {
 
@@ -55,7 +56,80 @@ public class TicketChecker implements Entity{
         lighting.setPosition(TicketChecker.this.X, TicketChecker.this.Y);
         hairshine.setPosition(TicketChecker.this.X, TicketChecker.this.Y);
         legs.setPosition(TicketChecker.this.X, TicketChecker.this.Y);
+
+        if(TicketChecker.getTicketChecker().getPosition().x - Player.getPlayer().getPosition().x < 196 && TicketChecker.getTicketChecker().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
+                TicketChecker.getTicketChecker().getPosition().y - Player.getPlayer().getPosition().y < 196 && TicketChecker.getTicketChecker().getPosition().y - Player.getPlayer().getPosition().y > - 196){
+            handleDialogue();
+        }
     }
+
+    private void handleDialogue(){
+        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+            Dialogue.activateDialogue();
+            level++;
+        }
+        if(stage == 0) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: Hi there!");
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Ticket Checker: Tickets please");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: What?");
+                    break;
+                case 7:
+                case 8:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Ticket Checker (menacingly): TICKETS PLEASE!");
+                    break;
+                case 9:
+                case 10:
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 11:
+                case 12:
+                    level = 0;
+                    stage++;
+
+            }
+        }
+        if(stage == 1){
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Ticket Checker: Do you have your ticket?");
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: No...");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Ticket Checker: Then get lost!");
+                    break;
+                case 7:
+                case 8:
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+            }
+        }
+    }
+
 
     private void up() {
         Y += 6;
