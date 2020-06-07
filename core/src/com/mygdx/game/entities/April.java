@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.management.BolbManager;
 import com.mygdx.game.utilities.scene2d.CustomAnimation;
+import com.mygdx.game.utilities.scene2d.FontActor;
 
 import java.util.Random;
 
@@ -19,6 +20,7 @@ public class April implements Entity {
     BolbManager bolbManager;
     private boolean interact;
     public static int level, stage;
+    private FontActor name;
 
     public static boolean t1, t2, t3, t4, t5, t6 = false;
 
@@ -30,6 +32,9 @@ public class April implements Entity {
         X = 940;
         Y = 30;
 
+        name = new FontActor("April", "Font/font.ttf", 16, false);
+        name.setVisible(false);
+        name.setPosition(1140, 390);
 
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, April.this.X, April.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, April.this.X, April.this.Y);
@@ -62,7 +67,9 @@ public class April implements Entity {
         legs.setPosition(April.this.X, April.this.Y);
         if ((April.getApril().getPosition().x - Player.getPlayer().getPosition().x < 196 && April.getApril().getPosition().x - Player.getPlayer().getPosition().x > -196 &&
                 April.getApril().getPosition().y - Player.getPlayer().getPosition().y < 196 && April.getApril().getPosition().y - Player.getPlayer().getPosition().y > -196) && !Dialogue.p2) {
+            name.setVisible(true);
             handleDialogue();
+
 
             if (April.getApril().Left() && April.getApril().getPostionX() - Player.getPlayer().getPostionX() > 0) {
                 April.getApril().flip();
@@ -70,6 +77,8 @@ public class April implements Entity {
             if (April.getApril().Right() && April.getApril().getPostionX() - Player.getPlayer().getPostionX() < 0) {
                 April.getApril().flip();
             }
+        }else{
+            name.setVisible(false);
         }
         if(Dialogue.p2){
             hair.setVisible(false);
@@ -78,6 +87,7 @@ public class April implements Entity {
             lighting.setVisible(false);
             hairshine.setVisible(false);
             legs.setVisible(false);
+            name.setVisible(false);
         }
 
 
@@ -216,6 +226,7 @@ public class April implements Entity {
         stage.addActor(eyes);
         stage.addActor(hair);
         stage.addActor(hairshine);
+        stage.addActor(name);
 
     }
 

@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.management.BolbManager;
 import com.mygdx.game.utilities.scene2d.CustomAnimation;
+import com.mygdx.game.utilities.scene2d.FontActor;
 
 import java.util.Random;
 
@@ -20,6 +21,7 @@ public class Rachel implements Entity {
     BolbManager bolbManager;
     private boolean interact;
     public static int level, stage;
+    private FontActor name;
 
     public static boolean t1, t2, t3, t4, t5, t6 = false;
 
@@ -32,7 +34,9 @@ public class Rachel implements Entity {
         X = 3740;
         Y = 80;
 
-
+        name = new FontActor("Rachel", "Font/font.ttf", 16, false);
+        name.setVisible(false);
+        name.setPosition(3930, 440);
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Rachel.this.X, Rachel.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, Rachel.this.X, Rachel.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, Rachel.this.X, Rachel.this.Y);
@@ -64,6 +68,8 @@ public class Rachel implements Entity {
         legs.setPosition(Rachel.this.X, Rachel.this.Y);
         if ((Rachel.getRachel().getPosition().x - Player.getPlayer().getPosition().x < 196 && Rachel.getRachel().getPosition().x - Player.getPlayer().getPosition().x > -196 &&
                 Rachel.getRachel().getPosition().y - Player.getPlayer().getPosition().y < 196 && Rachel.getRachel().getPosition().y - Player.getPlayer().getPosition().y > -196) && !Dialogue.p2) {
+            name.setVisible(true);
+
             handleDialogue();
 
             if (Rachel.getRachel().Left() && Rachel.getRachel().getPostionX() - Player.getPlayer().getPostionX() > 0) {
@@ -72,6 +78,9 @@ public class Rachel implements Entity {
             if (Rachel.getRachel().Right() && Rachel.getRachel().getPostionX() - Player.getPlayer().getPostionX() < 0) {
                 Rachel.getRachel().flip();
             }
+        }else{
+            name.setVisible(false);
+
         }
         if(Dialogue.p2){
             hair.setVisible(false);
@@ -80,6 +89,8 @@ public class Rachel implements Entity {
             lighting.setVisible(false);
             hairshine.setVisible(false);
             legs.setVisible(false);
+            name.setVisible(false);
+
         }
 
 
@@ -213,7 +224,7 @@ public class Rachel implements Entity {
         stage.addActor(eyes);
         stage.addActor(hair);
         stage.addActor(hairshine);
-
+        stage.addActor(name);
     }
 
     private void flip() {

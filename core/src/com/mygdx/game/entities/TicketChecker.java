@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.management.BolbManager;
 import com.mygdx.game.utilities.scene2d.CustomActor;
 import com.mygdx.game.utilities.scene2d.CustomAnimation;
+import com.mygdx.game.utilities.scene2d.FontActor;
 
 import java.util.Random;
 
@@ -20,6 +21,7 @@ public class TicketChecker implements Entity{
     private int X, Y;
     BolbManager bolbManager;
     public static int level, stage;
+    private FontActor name;
 
     private TicketChecker() {
 
@@ -28,7 +30,9 @@ public class TicketChecker implements Entity{
 
         X = 780;
         Y = 580;
-
+        name = new FontActor("Ticket Checker", "Font/font.ttf", 16, false);
+        name.setVisible(false);
+        name.setPosition(930, 920);
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, TicketChecker.this.X, TicketChecker.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, TicketChecker.this.X, TicketChecker.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, TicketChecker.this.X,TicketChecker.this.Y);
@@ -59,12 +63,17 @@ public class TicketChecker implements Entity{
 
         if((TicketChecker.getTicketChecker().getPosition().x - Player.getPlayer().getPosition().x < 196 && TicketChecker.getTicketChecker().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 TicketChecker.getTicketChecker().getPosition().y - Player.getPlayer().getPosition().y < 196 && TicketChecker.getTicketChecker().getPosition().y - Player.getPlayer().getPosition().y > - 196)&& !Dialogue.p2){
+            name.setVisible(true);
+
             handleDialogue();
 
             if(TicketChecker.getTicketChecker().Left() && TicketChecker.getTicketChecker().getPostionX() - Player.getPlayer().getPostionX() > 0){
                 TicketChecker.getTicketChecker().flip();}
             if(TicketChecker.getTicketChecker().Right() && TicketChecker.getTicketChecker().getPostionX() - Player.getPlayer().getPostionX() < 0){
                 TicketChecker.getTicketChecker().flip();}
+
+        }else{
+            name.setVisible(false);
 
         }
 
@@ -77,6 +86,8 @@ public class TicketChecker implements Entity{
             lighting.setVisible(false);
             hairshine.setVisible(false);
             legs.setVisible(false);
+            name.setVisible(false);
+
         }
 
     }
@@ -195,6 +206,7 @@ public class TicketChecker implements Entity{
         stage.addActor(eyes);
         stage.addActor(hair);
         stage.addActor(hairshine);
+        stage.addActor(name);
 
     }
 

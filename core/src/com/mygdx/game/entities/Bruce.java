@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.management.BolbManager;
 import com.mygdx.game.utilities.scene2d.CustomAnimation;
+import com.mygdx.game.utilities.scene2d.FontActor;
 
 import java.util.Random;
 
@@ -22,6 +23,7 @@ public class Bruce implements Entity {
     public static int level, stage;
 
     public static boolean t1,t2,t3, t4, t5, t6 = false;
+    private FontActor name;
 
 
     private Bruce() {
@@ -32,7 +34,9 @@ public class Bruce implements Entity {
         X = 2340;
         Y = 80;
 
-
+        name = new FontActor("Bruce", "Font/font.ttf", 16, false);
+        name.setVisible(false);
+        name.setPosition(2535, 415);
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Bruce.this.X, Bruce.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, Bruce.this.X, Bruce.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, Bruce.this.X, Bruce.this.Y);
@@ -64,12 +68,15 @@ public class Bruce implements Entity {
         legs.setPosition(Bruce.this.X, Bruce.this.Y);
         if(Bruce.getBruce().getPosition().x - Player.getPlayer().getPosition().x < 196 && Bruce.getBruce().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Bruce.getBruce().getPosition().y - Player.getPlayer().getPosition().y < 196 && Bruce.getBruce().getPosition().y - Player.getPlayer().getPosition().y > - 196){
+            name.setVisible(true);
             handleDialogue();
 
             if(Bruce.getBruce().Left() && Bruce.getBruce().getPostionX() - Player.getPlayer().getPostionX() > 0){
                 Bruce.getBruce().flip();}
             if(Bruce.getBruce().Right() && Bruce.getBruce().getPostionX() - Player.getPlayer().getPostionX() < 0){
                 Bruce.getBruce().flip();}
+        }else{
+            name.setVisible(false);
         }
 
 
@@ -285,6 +292,7 @@ public class Bruce implements Entity {
         stage.addActor(eyes);
         stage.addActor(hair);
         stage.addActor(hairshine);
+        stage.addActor(name);
 
     }
 

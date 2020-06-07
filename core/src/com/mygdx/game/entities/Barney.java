@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.management.BolbManager;
 import com.mygdx.game.utilities.scene2d.CustomAnimation;
+import com.mygdx.game.utilities.scene2d.FontActor;
 
 import java.util.Random;
 
@@ -20,7 +21,7 @@ public class Barney implements Entity {
     BolbManager bolbManager;
     private boolean interact;
     private int level, stage;
-
+    private FontActor name;
     public static boolean t1,t2,t3, t4, t5, t6 = false;
 
 
@@ -32,7 +33,9 @@ public class Barney implements Entity {
         X = 20;
         Y = 380;
 
-
+        name = new FontActor("Barney", "Font/font.ttf", 16, false);
+        name.setVisible(false);
+        name.setPosition(210, 720);
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Barney.this.X, Barney.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, Barney.this.X, Barney.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, Barney.this.X, Barney.this.Y);
@@ -64,7 +67,10 @@ public class Barney implements Entity {
         legs.setPosition(Barney.this.X, Barney.this.Y);
         if((Barney.getBarney().getPosition().x - Player.getPlayer().getPosition().x < 196 && Barney.getBarney().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Barney.getBarney().getPosition().y - Player.getPlayer().getPosition().y < 196 && Barney.getBarney().getPosition().y - Player.getPlayer().getPosition().y > - 196)&& !Dialogue.p1){
+            name.setVisible(true);
             handleDialogue();
+        }else{
+            name.setVisible(false);
         }
 
         if(Dialogue.p1){
@@ -74,6 +80,7 @@ public class Barney implements Entity {
             lighting.setVisible(false);
             hairshine.setVisible(false);
             legs.setVisible(false);
+            name.setVisible(false);
         }
 
 
@@ -168,6 +175,7 @@ public class Barney implements Entity {
         stage.addActor(eyes);
         stage.addActor(hair);
         stage.addActor(hairshine);
+        stage.addActor(name);
 
     }
 

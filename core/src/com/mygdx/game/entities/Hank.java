@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.management.BolbManager;
 import com.mygdx.game.utilities.scene2d.CustomAnimation;
+import com.mygdx.game.utilities.scene2d.FontActor;
 
 import java.util.Random;
 
@@ -20,6 +21,7 @@ public class Hank implements Entity {
     BolbManager bolbManager;
     private boolean interact;
     public static int level, stage;
+    private FontActor name;
 
     public static boolean t1,t2,t3, t4, t5, t6 = false;
 
@@ -32,7 +34,9 @@ public class Hank implements Entity {
         X = 1640;
         Y = 80;
 
-
+        name = new FontActor("Hank", "Font/font.ttf", 16, false);
+        name.setVisible(false);
+        name.setPosition(1840, 430);
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Hank.this.X, Hank.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, Hank.this.X, Hank.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, Hank.this.X, Hank.this.Y);
@@ -64,13 +68,19 @@ public class Hank implements Entity {
         legs.setPosition(Hank.this.X, Hank.this.Y);
         if((Hank.getHank().getPosition().x - Player.getPlayer().getPosition().x < 196 && Hank.getHank().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Hank.getHank().getPosition().y - Player.getPlayer().getPosition().y < 196 && Hank.getHank().getPosition().y - Player.getPlayer().getPosition().y > - 196)&& !Dialogue.p3){
+            name.setVisible(true);
+
+
             handleDialogue();
 
             if(Hank.getHank().Left() && Hank.getHank().getPostionX() - Player.getPlayer().getPostionX() > 0){
                 Hank.getHank().flip();}
             if(Hank.getHank().Right() && Hank.getHank().getPostionX() - Player.getPlayer().getPostionX() < 0){
                 Hank.getHank().flip();}
+        }else{           name.setVisible(false);
         }
+
+
         if(Dialogue.p3){
             hair.setVisible(false);
             eyes.setVisible(false);
@@ -78,6 +88,8 @@ public class Hank implements Entity {
             lighting.setVisible(false);
             hairshine.setVisible(false);
             legs.setVisible(false);
+            name.setVisible(false);
+
         }
 
 
@@ -264,7 +276,7 @@ public class Hank implements Entity {
         stage.addActor(eyes);
         stage.addActor(hair);
         stage.addActor(hairshine);
-
+        stage.addActor(name);
     }
 
     private void flip() {

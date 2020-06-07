@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.management.BolbManager;
 import com.mygdx.game.utilities.scene2d.CustomAnimation;
+import com.mygdx.game.utilities.scene2d.FontActor;
 
 import java.util.Random;
 
@@ -21,6 +22,7 @@ public class Titus implements Entity {
     public static int level, stage;
 
     public static boolean t1,t2,t3, t4, t5, t6 = false;
+    private FontActor name;
 
 
     private Titus() {
@@ -31,7 +33,9 @@ public class Titus implements Entity {
         X = 4640;
         Y = 80;
 
-
+        name = new FontActor("Titus", "Font/font.ttf", 16, false);
+        name.setVisible(false);
+        name.setPosition(4840, 430);
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Titus.this.X, Titus.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, Titus.this.X, Titus.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, Titus.this.X, Titus.this.Y);
@@ -65,12 +69,17 @@ public class Titus implements Entity {
 
         if((Titus.getTitus().getPosition().x - Player.getPlayer().getPosition().x < 196 && Titus.getTitus().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Titus.getTitus().getPosition().y - Player.getPlayer().getPosition().y < 196 && Titus.getTitus().getPosition().y - Player.getPlayer().getPosition().y > - 196)&& !Dialogue.p4){
+            name.setVisible(true);
+
             handleDialogue();
 
             if(Titus.getTitus().Left() && Titus.getTitus().getPostionX() - Player.getPlayer().getPostionX() > 0){
                 Titus.getTitus().flip();}
             if(Titus.getTitus().Right() && Titus.getTitus().getPostionX() - Player.getPlayer().getPostionX() < 0){
                 Titus.getTitus().flip();}
+        }else{
+            name.setVisible(false);
+
         }
 
         if(Dialogue.p4){
@@ -256,6 +265,7 @@ public class Titus implements Entity {
         stage.addActor(eyes);
         stage.addActor(hair);
         stage.addActor(hairshine);
+        stage.addActor(name);
 
     }
 

@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.management.BolbManager;
 import com.mygdx.game.utilities.scene2d.CustomAnimation;
+import com.mygdx.game.utilities.scene2d.FontActor;
 
 import java.util.Random;
 
@@ -19,6 +20,7 @@ public class Ethan implements Entity {
     private int X, Y;
     BolbManager bolbManager;
     public static int level = 0;
+    private FontActor name;
     public static int stage = 0;
 
     public static boolean t1,t2,t3, t4, t5, t6 = false;
@@ -33,7 +35,9 @@ public class Ethan implements Entity {
         X = 1840;
         Y = 580;
 
-
+        name = new FontActor("Ethan", "Font/font.ttf", 16, false);
+        name.setVisible(false);
+        name.setPosition(2040, 930);
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Ethan.this.X, Ethan.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, Ethan.this.X, Ethan.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, Ethan.this.X, Ethan.this.Y);
@@ -69,12 +73,17 @@ public class Ethan implements Entity {
 
         if((Ethan.getEthan().getPosition().x - Player.getPlayer().getPosition().x < 196 && Ethan.getEthan().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Ethan.getEthan().getPosition().y - Player.getPlayer().getPosition().y < 196 && Ethan.getEthan().getPosition().y - Player.getPlayer().getPosition().y > - 196) && !Dialogue.p4){
+            name.setVisible(true);
+
             handleDialogue();
 
             if(Ethan.getEthan().Left() && Ethan.getEthan().getPostionX() - Player.getPlayer().getPostionX() > 0){
                 Ethan.getEthan().flip();}
             if(Ethan.getEthan().Right() && Ethan.getEthan().getPostionX() - Player.getPlayer().getPostionX() < 0){
                 Ethan.getEthan().flip();}
+        }else{
+            name.setVisible(false);
+
         }
 
         if(Dialogue.p4){
@@ -84,6 +93,8 @@ public class Ethan implements Entity {
             lighting.setVisible(false);
             hairshine.setVisible(false);
             legs.setVisible(false);
+            name.setVisible(false);
+
         }
 
         }
@@ -274,6 +285,7 @@ public class Ethan implements Entity {
         stage.addActor(eyes);
         stage.addActor(hair);
         stage.addActor(hairshine);
+        stage.addActor(name);
 
     }
 

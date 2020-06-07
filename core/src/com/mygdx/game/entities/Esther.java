@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.management.BolbManager;
 import com.mygdx.game.utilities.scene2d.CustomAnimation;
+import com.mygdx.game.utilities.scene2d.FontActor;
 
 import java.util.Random;
 
@@ -21,6 +22,7 @@ public class Esther implements Entity {
     private boolean interact;
     public static int level, stage;
     public static boolean t1,t2,t3, t4, t5, t6 = false;
+    private FontActor name;
 
 
     private Esther() {
@@ -31,7 +33,9 @@ public class Esther implements Entity {
         X = 5740;
         Y = 480;
 
-
+        name = new FontActor("Esther", "Font/font.ttf", 16, false);
+        name.setVisible(false);
+        name.setPosition(5940, 830);
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Esther.this.X, Esther.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, Esther.this.X, Esther.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, Esther.this.X, Esther.this.Y);
@@ -63,12 +67,15 @@ public class Esther implements Entity {
         legs.setPosition(Esther.this.X, Esther.this.Y);
         if(Esther.getEsther().getPosition().x - Player.getPlayer().getPosition().x < 196 && Esther.getEsther().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Esther.getEsther().getPosition().y - Player.getPlayer().getPosition().y < 196 && Esther.getEsther().getPosition().y - Player.getPlayer().getPosition().y > - 196){
+            name.setVisible(true);
             handleDialogue();
 
             if(Esther.getEsther().Left() && Esther.getEsther().getPostionX() - Player.getPlayer().getPostionX() > 0){
                 Esther.getEsther().flip();}
             if(Esther.getEsther().Right() && Esther.getEsther().getPostionX() - Player.getPlayer().getPostionX() < 0){
                 Esther.getEsther().flip();}
+        }else{
+            name.setVisible(false);
         }
 
 
@@ -280,7 +287,7 @@ public class Esther implements Entity {
         stage.addActor(eyes);
         stage.addActor(hair);
         stage.addActor(hairshine);
-
+        stage.addActor(name);
     }
 
     private void flip() {
