@@ -10,7 +10,7 @@ How To Play:
 
 - To interact, go near a character and click anywhere, this will start a dialogue, keep clicking and reading till it is over.
 
-- W, A, S, D to move.
+- W, A, S, D or Arrow Keys to move.
 
 - Keep interacting with characters and the story will progress.
 
