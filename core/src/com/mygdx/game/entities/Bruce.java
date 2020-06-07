@@ -36,14 +36,14 @@ public class Bruce implements Entity {
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Bruce.this.X, Bruce.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, Bruce.this.X, Bruce.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, Bruce.this.X, Bruce.this.Y);
-        hair = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.DefaultHair)), 3, 0.4f, 455, 382, Bruce.this.X, Bruce.this.Y);
-        hairshine = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.DefaultHairShine)), 3, 0.4f, 455, 382, Bruce.this.X, Bruce.this.Y);
+        hair = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Bald)), 3, 0.4f, 455, 382, Bruce.this.X, Bruce.this.Y);
+        hairshine = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.BaldShine)), 3, 0.4f, 455, 382, Bruce.this.X, Bruce.this.Y);
         legs = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Legs)), 3, 0.4f, 455, 382, Bruce.this.X, Bruce.this.Y);
 
-        body.setHSV(360, 0.54f, 0.7f);
+        body.setHSV(360, 0.64f, 0.7f);
         lighting.setHSV(345, 0.3f, 1f);
         eyes.setHSV(0, 0f, 0f);
-        hair.setHSV(139, 0.5f, 0f);
+        hair.setHSV(360, 0.64f, 0.7f);
         legs.setHSV(360, 0.3f, 1f);
         hairshine.setHSV(0, 0f, 1f);
 

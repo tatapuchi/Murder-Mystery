@@ -39,10 +39,10 @@ public class Titus implements Entity {
         hairshine = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.DefaultHairShine)), 3, 0.4f, 455, 382, Titus.this.X, Titus.this.Y);
         legs = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Legs)), 3, 0.4f, 455, 382, Titus.this.X, Titus.this.Y);
 
-        body.setHSV(360, 0.54f, 0.7f);
+        body.setHSV(360, 0.24f, 1f);
         lighting.setHSV(345, 0.3f, 1f);
         eyes.setHSV(0, 0f, 0f);
-        hair.setHSV(139, 0.5f, 0f);
+        hair.setHSV(360, 0.64f, 0.7f);
         legs.setHSV(360, 0.3f, 1f);
         hairshine.setHSV(0, 0f, 1f);
 

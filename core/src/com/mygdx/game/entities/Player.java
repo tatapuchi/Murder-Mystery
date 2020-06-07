@@ -138,19 +138,19 @@ public class Player implements Entity{
     }
 
     private void up() {
-        Y += 16;
+        Y += 6;
     }
 
     private void down() {
-        Y -= 16;
+        Y -= 6;
     }
 
     private void right() {
-        X += 16;
+        X += 6;
     }
 
     private void left() {
-        X -= 16;
+        X -= 6;
     }
 
     public void drawbody(Stage stage) {
@@ -197,23 +197,6 @@ public class Player implements Entity{
         return Player.getPlayer().body.getAnimation().getFrame().isFlipX();
 
     }
-//
-//    public void setHSV(int hue, float saturation, float brightness) {
-//
-//        if (CurrentThing == 1) {
-//            this.body.setHSV(hue, saturation, brightness);
-//            this.legs.setHSV(hue, saturation,brightness);
-//            this.move.setHSV(hue, saturation,brightness);
-//            this.lighting.setHSV(hue - 15, saturation, brightness);
-//        } else if (CurrentThing == 2) {
-//            this.hair.setHSV(hue, saturation, brightness);
-//        } else if (CurrentThing == 3) {
-//            this.eyes.setHSV(hue, saturation, brightness);
-//        }
-//        this.hairshine.setHSV(0, 0, 1);
-//
-//    }
-
     public int getPostionX() {
         return this.X;
     }

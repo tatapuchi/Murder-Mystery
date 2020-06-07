@@ -34,14 +34,6 @@ import com.mygdx.game.utilities.General;
 import com.mygdx.game.utilities.scene2d.CustomActor;
 import com.mygdx.game.utilities.scene2d.ParticleActor;
 
-import org.omg.PortableInterceptor.DISCARDING;
-
-import java.util.Random;
-
-import javax.xml.soap.Text;
-
-import sun.security.krb5.internal.crypto.Des;
-
 public class World extends State {
 
     private Stage stage;
@@ -52,7 +44,6 @@ public class World extends State {
     private CustomActor background;
     private ParticleActor wind;
     private ParticleEffect windEffect;
-    private CustomActor Desk;
 
 
     public World(final GameStateManager gsm) {
@@ -71,8 +62,7 @@ public class World extends State {
         wind.getEffect().findEmitter("Sparticle").getYOffsetValue().setLow(50,-50);
 
         Texture texture = new Texture("Environment/Train.png");
-        Texture desk = new Texture("Environment/White-Desk.png");
-//        Desk = new CustomActor(new TextureRegion(desk), 432,192, 1500,630 );
+
         background = new CustomActor(new TextureRegion(texture), 8192 , 1024, 0, 0);
         inputMultiplexer = new InputMultiplexer();
         cam = new OrthographicCamera();

@@ -9,6 +9,10 @@ import com.mygdx.game.entities.Player;
 
 public class CameraUtilities {
 
+    private CameraUtilities(){
+        throw new AssertionError();
+    }
+
     //Basic camera that follows the player
     public static void lockOnTarget(Camera camera, Vector2 target) {
         Vector3 position = camera.position;

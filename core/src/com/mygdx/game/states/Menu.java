@@ -8,20 +8,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.management.GameStateManager;
 import com.mygdx.game.management.State;
 import com.mygdx.game.utilities.scene2d.CustomActor;
 import com.mygdx.game.utilities.scene2d.FontActor;
-
-import java.util.Random;
-
-import javax.xml.soap.Text;
-
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
 
 public class Menu extends State {
     FontActor font, title, description;
@@ -87,8 +78,8 @@ public class Menu extends State {
             r += 0.001f;
         }
         if (r > 0.98f) {
-            if(b>0.0f){
-                b-=0.001f;
+            if (b > 0.0f) {
+                b -= 0.001f;
             }
             if (b < 0.02f && g < 1f) {
                 g += 0.001f;
@@ -112,7 +103,7 @@ public class Menu extends State {
             }
 
         }
-        return new Vector3(r,g,b);
+        return new Vector3(r, g, b);
 
     }
 
