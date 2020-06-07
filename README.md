@@ -10,6 +10,8 @@ How To Play:
 
 - To interact, go near a character and click anywhere, this will start a dialogue, keep clicking and reading till it is over.
 
+- W, A, S, D to move.
+
 - Keep interacting with characters and the story will progress.
 
 - There are multiple conversation paths that you can take to find out more info, depending on how you take them, the caracters react differently.
