@@ -97,39 +97,41 @@ public class Player implements Entity{
         if(Player.this.X > 7900){
             Player.this.X = 7900;
         }
-        if (Right() && Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (Right() && (Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT))) {
             Player.getPlayer().flip();
         }
-        if (Left() && Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (Left() && (Gdx.input.isKeyPressed(Input.Keys.A)|| Gdx.input.isKeyPressed(Input.Keys.LEFT))) {
             Player.getPlayer().flip();
         }
 
         setParticlePosition();
 
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)) {
             Player.getPlayer().up();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.S)|| Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             Player.getPlayer().down();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.A)|| Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             Player.getPlayer().left();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             Player.getPlayer().right();
         }
 
-        if (!(Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.D))) {
+        if (!(Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.D)
+                || Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.LEFT)|| Gdx.input.isKeyPressed(Input.Keys.DOWN)|| Gdx.input.isKeyPressed(Input.Keys.UP))) {
             runActor.pause("Sparticle");
             move.pause(true);
             legs.pause(false);
         }
 
-        if ((Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.D))) {
+        if ((Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.D)
+                || Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.LEFT)|| Gdx.input.isKeyPressed(Input.Keys.DOWN)|| Gdx.input.isKeyPressed(Input.Keys.UP))) {
             runActor.resume("Sparticle");
             move.pause(false);
             legs.pause(true);

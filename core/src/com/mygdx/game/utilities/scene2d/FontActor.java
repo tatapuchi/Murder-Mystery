@@ -1,5 +1,6 @@
 package com.mygdx.game.utilities.scene2d;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -24,7 +25,7 @@ public class FontActor extends Actor {
         this.flip = flip;
         this.classPath = classPath;
 
-        fontPath = new FileHandle(classPath);
+        fontPath = Gdx.files.internal(classPath);
         generator = new FreeTypeFontGenerator(fontPath);
         fontParamter.size = size;
         fontParamter.flip = flip;
