@@ -7,7 +7,9 @@ All assets are made by our team.
 The .jar file for the game is located below the gitignore and above the readme
 
 How To Play: 
--To interact, go near a character and click anywhere, keep interacting with characters and the story progresses.
--There are multiple conversation paths that you can take to find out more info, depending on how you take them, the caracters react differently.
+
+To interact, go near a character and click anywhere, keep interacting with characters and the story progresses.
+
+There are multiple conversation paths that you can take to find out more info, depending on how you take them, the caracters react differently.
 
 
