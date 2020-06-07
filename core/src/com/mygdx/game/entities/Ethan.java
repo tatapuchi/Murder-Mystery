@@ -18,8 +18,8 @@ public class Ethan implements Entity {
     private CustomAnimation body, hair, eyes, lighting, hairshine, legs;
     private int X, Y;
     BolbManager bolbManager;
-    int level = 0;
-    int stage = 0;
+    public static int level = 0;
+    public static int stage = 0;
 
     public static boolean t1,t2,t3, t4, t5, t6 = false;
 
@@ -88,7 +88,7 @@ public class Ethan implements Entity {
             Dialogue.activateDialogue();
             level++;
         }
-        if(stage == 0) {
+        if(stage == 0 ) {
             switch (level) {
                 case 1:
                 case 2:
@@ -125,7 +125,7 @@ public class Ethan implements Entity {
                 case 14:
                     Dialogue.reset();
                     level = 0;
-                    stage ++;
+                    stage = 1;
 
             }
         }
@@ -149,6 +149,39 @@ public class Ethan implements Entity {
                 case 8:
                     level = 0;
                     break;
+            }
+        }
+
+        if(stage == 2) {
+            switch (level) {
+                case 1:
+                case 2:
+                    if(Titus.t2){
+                        Dialogue.setText("Ethan: Sure Titus may think it is Bruce or Esther who killed him.");} else{
+                        Dialogue.setText("Ethan: I know who killed Barney.");
+                    }
+
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Ethan: I am a detective. I say its Hank.");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("Ethan: You can never trust a businessman, they are here for business!");
+                    break;
+                case 7:
+                case 8:
+                    t2 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
             }
         }
     }

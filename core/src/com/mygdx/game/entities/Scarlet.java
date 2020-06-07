@@ -18,9 +18,9 @@ public class Scarlet implements Entity {
     private int X, Y;
     BolbManager bolbManager;
     private boolean interact;
-    private int level, stage;
+    public static int level, stage;
 
-    public static boolean t1,t2,t3, t4, t5, t6 = false;
+    public static boolean t1, t2, t3, t4, t5, t6 = false;
 
 
     private Scarlet() {
@@ -62,26 +62,27 @@ public class Scarlet implements Entity {
         hairshine.setPosition(Scarlet.this.X, Scarlet.this.Y);
         legs.setPosition(Scarlet.this.X, Scarlet.this.Y);
 
-        if(Scarlet.getScarlet().getPosition().x - Player.getPlayer().getPosition().x < 196 && Scarlet.getScarlet().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
-                Scarlet.getScarlet().getPosition().y - Player.getPlayer().getPosition().y < 196 && Scarlet.getScarlet().getPosition().y - Player.getPlayer().getPosition().y > - 196){
+        if (Scarlet.getScarlet().getPosition().x - Player.getPlayer().getPosition().x < 196 && Scarlet.getScarlet().getPosition().x - Player.getPlayer().getPosition().x > -196 &&
+                Scarlet.getScarlet().getPosition().y - Player.getPlayer().getPosition().y < 196 && Scarlet.getScarlet().getPosition().y - Player.getPlayer().getPosition().y > -196) {
             handleDialogue();
 
-            if(Scarlet.getScarlet().Left() && Scarlet.getScarlet().getPostionX() - Player.getPlayer().getPostionX() > 0){
-                Scarlet.getScarlet().flip();}
-            if(Scarlet.getScarlet().Right() && Scarlet.getScarlet().getPostionX() - Player.getPlayer().getPostionX() < 0){
-                Scarlet.getScarlet().flip();}
+            if (Scarlet.getScarlet().Left() && Scarlet.getScarlet().getPostionX() - Player.getPlayer().getPostionX() > 0) {
+                Scarlet.getScarlet().flip();
+            }
+            if (Scarlet.getScarlet().Right() && Scarlet.getScarlet().getPostionX() - Player.getPlayer().getPostionX() < 0) {
+                Scarlet.getScarlet().flip();
+            }
         }
-
 
 
     }
 
-    public void handleDialogue(){
-        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+    public void handleDialogue() {
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             Dialogue.activateDialogue();
             level++;
         }
-        if(stage == 0) {
+        if (stage == 0) {
             switch (level) {
                 case 1:
                 case 2:
@@ -118,11 +119,11 @@ public class Scarlet implements Entity {
                 case 14:
                     Dialogue.reset();
                     level = 0;
-                    stage ++;
+                    stage = 1;
 
             }
         }
-        if(stage == 1){
+        if (stage == 1) {
             switch (level) {
                 case 1:
                 case 2:
@@ -147,6 +148,35 @@ public class Scarlet implements Entity {
                 case 10:
                     level = 0;
                     break;
+            }
+        }
+
+        if (stage == 2) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Scarlet: What, someone was killed?");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: Yes, Do you have any clue as to who might've done this?");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("Scarlet: Well I only know that it couldn't be Esther, she loved Barney!");
+                    break;
+                case 7:
+                case 8:
+                    t2 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
             }
         }
     }

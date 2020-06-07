@@ -19,7 +19,7 @@ public class Bruce implements Entity {
     private int X, Y;
     BolbManager bolbManager;
     private boolean interact;
-    private int level, stage;
+    public static int level, stage;
 
     public static boolean t1,t2,t3, t4, t5, t6 = false;
 
@@ -118,7 +118,7 @@ public class Bruce implements Entity {
                 case 14:
 
                     level = 0;
-                    stage ++;
+                    stage = 1;
 
             }
         }
@@ -142,6 +142,38 @@ public class Bruce implements Entity {
                 case 8:
                     level = 0;
                     break;
+            }
+        }
+        if(stage == 2) {
+            switch (level) {
+                case 1:
+                case 2:
+                    if(Hank.t2 || Titus.t2){
+                    Dialogue.setText("Bruce: I swear! I didn't have anything to do with this!!!");} else{
+                        Dialogue.setText("Bruce: Look, only thing I know is that Hank might have been involved");
+                    }
+
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Bruce: Barney was fired from Hank's firm which led to his alcoholism");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("Bruce: Hank might've wanted him gone because he knew the company secrets!");
+                    break;
+                case 7:
+                case 8:
+                    t2 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
             }
         }
     }

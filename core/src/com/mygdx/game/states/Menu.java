@@ -4,34 +4,47 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.management.GameStateManager;
 import com.mygdx.game.management.State;
+import com.mygdx.game.utilities.scene2d.CustomActor;
 import com.mygdx.game.utilities.scene2d.FontActor;
 
 import java.util.Random;
 
+import javax.xml.soap.Text;
+
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
+
 public class Menu extends State {
     FontActor font, title, description;
     Stage stage;
+    CustomActor button;
 
     public Menu(final GameStateManager gsm) {
         super(gsm);
         stage = new Stage();
-        font = new FontActor("Left Click to Continue", "Font/font.ttf", 24, false);
+        Texture texture = new Texture("Buttons/Play.png");
+        button = new CustomActor(new TextureRegion(texture), 256, 128, 500, 250);
+        font = new FontActor("Play", "Font/font.ttf", 36, false);
         title = new FontActor("Overly Pixelated Murder-Mystery", "Font/font.ttf", 24, false);
         description = new FontActor("By Eggz team", "Font/font.ttf", 16, false);
-        font.setPosition(500, Gdx.graphics.getHeight() / 2);
+        font.setPosition(580, 340);
         title.setPosition(30, 700);
         description.setPosition(30, 660);
+        stage.addActor(button);
         stage.addActor(font);
         stage.addActor(title);
         stage.addActor(description);
         Pixmap pm = new Pixmap(Gdx.files.internal("HUD/Cursor.png"));
         Gdx.graphics.setCursor(Gdx.graphics.newCursor(pm, 0, 0));
-
     }
 
     @Override
@@ -46,6 +59,7 @@ public class Menu extends State {
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             gsm.push(new World(gsm));
         }
+
 
     }
 

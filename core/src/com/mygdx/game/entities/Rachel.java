@@ -19,9 +19,9 @@ public class Rachel implements Entity {
     private int X, Y;
     BolbManager bolbManager;
     private boolean interact;
-    private int level, stage;
+    public static int level, stage;
 
-    public static boolean t1,t2,t3, t4, t5, t6 = false;
+    public static boolean t1, t2, t3, t4, t5, t6 = false;
 
 
     private Rachel() {
@@ -62,25 +62,35 @@ public class Rachel implements Entity {
         lighting.setPosition(Rachel.this.X, Rachel.this.Y);
         hairshine.setPosition(Rachel.this.X, Rachel.this.Y);
         legs.setPosition(Rachel.this.X, Rachel.this.Y);
-        if(Rachel.getRachel().getPosition().x - Player.getPlayer().getPosition().x < 196 && Rachel.getRachel().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
-                Rachel.getRachel().getPosition().y - Player.getPlayer().getPosition().y < 196 && Rachel.getRachel().getPosition().y - Player.getPlayer().getPosition().y > - 196){
+        if ((Rachel.getRachel().getPosition().x - Player.getPlayer().getPosition().x < 196 && Rachel.getRachel().getPosition().x - Player.getPlayer().getPosition().x > -196 &&
+                Rachel.getRachel().getPosition().y - Player.getPlayer().getPosition().y < 196 && Rachel.getRachel().getPosition().y - Player.getPlayer().getPosition().y > -196) && !Dialogue.p2) {
             handleDialogue();
 
-            if(Rachel.getRachel().Left() && Rachel.getRachel().getPostionX() - Player.getPlayer().getPostionX() > 0){
-                Rachel.getRachel().flip();}
-            if(Rachel.getRachel().Right() && Rachel.getRachel().getPostionX() - Player.getPlayer().getPostionX() < 0){
-                Rachel.getRachel().flip();}
+            if (Rachel.getRachel().Left() && Rachel.getRachel().getPostionX() - Player.getPlayer().getPostionX() > 0) {
+                Rachel.getRachel().flip();
+            }
+            if (Rachel.getRachel().Right() && Rachel.getRachel().getPostionX() - Player.getPlayer().getPostionX() < 0) {
+                Rachel.getRachel().flip();
+            }
+        }
+        if(Dialogue.p2){
+            hair.setVisible(false);
+            eyes.setVisible(false);
+            body.setVisible(false);
+            lighting.setVisible(false);
+            hairshine.setVisible(false);
+            legs.setVisible(false);
         }
 
 
     }
 
-    public void handleDialogue(){
-        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+    public void handleDialogue() {
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             Dialogue.activateDialogue();
             level++;
         }
-        if(stage == 0) {
+        if (stage == 0) {
             switch (level) {
                 case 1:
                 case 2:
@@ -122,12 +132,12 @@ public class Rachel implements Entity {
                 case 16:
                     Dialogue.reset();
                     level = 0;
-                    stage ++;
+                    stage = 1;
                     break;
 
             }
         }
-        if(stage == 1){
+        if (stage == 1) {
             switch (level) {
                 case 1:
                 case 2:
@@ -147,6 +157,35 @@ public class Rachel implements Entity {
                 case 8:
                     level = 0;
                     break;
+            }
+        }
+
+        if (stage == 2) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Rachel: Oh no, what if somethings happens to me or April!");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Rachel: I'm scared!");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("You: Shut up, don't play the victim or we will think you are the killer.");
+                    break;
+                case 7:
+                case 8:
+                    t2 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
             }
         }
     }

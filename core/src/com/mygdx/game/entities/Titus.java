@@ -18,8 +18,7 @@ public class Titus implements Entity {
     private CustomAnimation body, hair, eyes, lighting, hairshine, legs;
     private int X, Y;
     BolbManager bolbManager;
-    private boolean interact;
-    private int level, stage;
+    public static int level, stage;
 
     public static boolean t1,t2,t3, t4, t5, t6 = false;
 
@@ -62,6 +61,8 @@ public class Titus implements Entity {
         lighting.setPosition(Titus.this.X, Titus.this.Y);
         hairshine.setPosition(Titus.this.X, Titus.this.Y);
         legs.setPosition(Titus.this.X, Titus.this.Y);
+
+
         if(Titus.getTitus().getPosition().x - Player.getPlayer().getPosition().x < 196 && Titus.getTitus().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Titus.getTitus().getPosition().y - Player.getPlayer().getPosition().y < 196 && Titus.getTitus().getPosition().y - Player.getPlayer().getPosition().y > - 196){
             handleDialogue();
@@ -80,7 +81,7 @@ public class Titus implements Entity {
             Dialogue.activateDialogue();
             level++;
         }
-        if(stage == 0  && !Dialogue.p1) {
+        if(stage == 0) {
             switch (level) {
                 case 1:
                 case 2:
@@ -117,11 +118,11 @@ public class Titus implements Entity {
                 case 14:
                     Dialogue.reset();
                     level = 0;
-                    stage ++;
+                    stage = 1;
 
             }
         }
-        if(stage == 1 && !Dialogue.p1){
+        if(stage == 1){
             switch (level) {
                 case 1:
                 case 2:
@@ -138,20 +139,24 @@ public class Titus implements Entity {
                     break;
             }
         }
-        if(Dialogue.p1) {
+        if(stage == 2) {
             switch (level) {
                 case 1:
                 case 2:
-                    Dialogue.setText("Titus: Barney is dead, I'm betting it has something to do with Esther and Bruce, they had some sort of weird love triangle or something");
+                    if(Hank.t2){
+                        Dialogue.setText("Titus: I think Hank might be onto something, Bruce seems fishy...");
+                    }else{
+                    Dialogue.setText("Titus: Barney is dead, I'm betting it has something to do with Esther and Bruce!");}
                     Dialogue.activateDialogue();
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: Interesting. A murder on a train? I'll ask around for clues...");
+                    Dialogue.setText("You: I'll ask around for clues...");
                     break;
                 case 5:
                 case 6:
+                    t2 = true;
                     Dialogue.deactivateDialogue();
                     break;
                 case 7:

@@ -19,7 +19,7 @@ public class TicketChecker implements Entity{
     private CustomAnimation body, hair, eyes, lighting, hairshine, legs;
     private int X, Y;
     BolbManager bolbManager;
-    private int level, stage;
+    public static int level, stage;
 
     private TicketChecker() {
 
@@ -132,6 +132,29 @@ public class TicketChecker implements Entity{
                 case 10:
                     level = 0;
                     break;
+            }
+        }
+        if(stage == 2) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Ticket Checker: Oh dear, a murder on the train!");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Ticket Checker: Well at least I won't have to check their ticket");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 7:
+                case 8:
+                    level = 0;
+                    break;
+
             }
         }
     }

@@ -19,7 +19,7 @@ public class Hank implements Entity {
     private int X, Y;
     BolbManager bolbManager;
     private boolean interact;
-    private int level, stage;
+    public static int level, stage;
 
     public static boolean t1,t2,t3, t4, t5, t6 = false;
 
@@ -80,7 +80,7 @@ public class Hank implements Entity {
             Dialogue.activateDialogue();
             level++;
         }
-        if(stage == 0 && !Dialogue.p1) {
+        if(stage == 0) {
             switch (level) {
                 case 1:
                 case 2:
@@ -115,9 +115,10 @@ public class Hank implements Entity {
                     break;
                 case 13:
                 case 14:
+                    Dialogue.deactivateDialogue();
                     Dialogue.reset();
                     level = 0;
-                    stage ++;
+                    stage = 1;
 
             }
         }
@@ -148,12 +149,20 @@ public class Hank implements Entity {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Hank: Barney is dead, oh my, but how?");
+                    if(Titus.t2 && !Bruce.t2) {
+                        Dialogue.setText("Hank: Titus is definitely right, watch out!");
+                    }else if(Bruce.t2){
+                        Dialogue.setText("Hank: Bruce is lying, I'd never kill someone.");
+            }else{
+                Dialogue.setText("Hank: Barney is dead? Oh my, but how?");}
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
                     Dialogue.setText("Hank: It couldn't have been of all the drinking, someone must have killed him");
+                    if(Bruce.t2){
+                        Dialogue.setText("Hank: In fact, I am now sure that Bruce is the killer.");
+                    }
                     break;
                 case 5:
                 case 6:
@@ -163,6 +172,34 @@ public class Hank implements Entity {
                 case 8:
                     level = 0;
                     break;
+                    default:
+                        Dialogue.setText("Something is wrong");
+            }
+        }
+        if(stage == 2) {
+            switch (level) {
+                case 1:
+                case 2:
+                    if(Titus.t2){
+                    Dialogue.setText("Hank: Titus is right, Esther and Bruce definitely had a role to play in this");}else{
+                    Dialogue.setText("Hank: Esther and Bruce might've done something, keep an eye out for Bruce");}
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: Odd...");
+                    break;
+                case 5:
+                case 6:
+                    t2 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 7:
+                case 8:
+                    level = 0;
+                    break;
+
             }
         }
     }

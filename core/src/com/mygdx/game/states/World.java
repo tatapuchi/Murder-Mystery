@@ -34,6 +34,8 @@ import com.mygdx.game.utilities.General;
 import com.mygdx.game.utilities.scene2d.CustomActor;
 import com.mygdx.game.utilities.scene2d.ParticleActor;
 
+import org.omg.PortableInterceptor.DISCARDING;
+
 import javax.xml.soap.Text;
 
 import sun.security.krb5.internal.crypto.Des;
@@ -108,14 +110,60 @@ public class World extends State {
             Gdx.app.exit();
         }
 
-        if(Hank.t1 && Barney.t1 && Ethan.t1 && Titus.t1 && Esther.t1){
-            Dialogue.progress += 1;
+        if(Barney.t1 && Hank.t1 && Esther.t1 && Ethan.t1 && Titus.t1 && Bruce.t1 && April.t1 && Scarlet.t1 && Rachel.t1 && !Dialogue.p1){
+            Dialogue.progress = 1;
+            Hank.stage = 2;
+            Titus.stage = 2;
+            April.stage = 2;
+            Esther.stage = 2;
+            Ethan.stage = 2;
+            Scarlet.stage = 2;
+            Bruce.stage = 2;
+            Rachel.stage = 2;
+            TicketChecker.stage = 2;
+        }
+        if(Hank.t2  && Esther.t2 && Ethan.t2 && Titus.t2 && Bruce.t2 && April.t2 && Scarlet.t2 && Rachel.t2 && !Dialogue.p2){
+            System.out.println(Dialogue.progress);
+            System.out.println("DONEEEE");
+
+            Dialogue.progress = 2;
+            Hank.stage = 3;
+            Titus.stage = 3;
+            April.stage = 3;
+            Esther.stage = 3;
+            Ethan.stage = 3;
+            Scarlet.stage = 3;
+            Bruce.stage = 3;
+            Rachel.stage = 3;
+            TicketChecker.stage = 3;
+
         }
         Dialogue.blackout();
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !Dialogue.p1) {
             Dialogue.p1 = true;
+            Dialogue.deactivateDialogue();
             Dialogue.deactivateBlackout();
-            System.out.println("DONE");
+            Hank.level = 0;
+            Titus.level = 0;
+            April.level = 0;
+            Esther.level = 0;
+            Ethan.level = 0;
+            Scarlet.level = 0;
+            Bruce.level = 0;
+            Rachel.level = 0;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !Dialogue.p2 && Dialogue.progress == 2) {
+            Dialogue.p2 = true;
+            Dialogue.deactivateDialogue();
+            Dialogue.deactivateBlackout();
+            Hank.level = 0;
+            Titus.level = 0;
+            April.level = 0;
+            Esther.level = 0;
+            Ethan.level = 0;
+            Scarlet.level = 0;
+            Bruce.level = 0;
+            Rachel.level = 0;
         }
 
     }

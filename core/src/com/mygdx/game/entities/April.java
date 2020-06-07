@@ -18,9 +18,9 @@ public class April implements Entity {
     private int X, Y;
     BolbManager bolbManager;
     private boolean interact;
-    private int level, stage;
+    public static int level, stage;
 
-    public static boolean t1,t2,t3, t4, t5, t6 = false;
+    public static boolean t1, t2, t3, t4, t5, t6 = false;
 
     private April() {
 
@@ -60,30 +60,40 @@ public class April implements Entity {
         lighting.setPosition(April.this.X, April.this.Y);
         hairshine.setPosition(April.this.X, April.this.Y);
         legs.setPosition(April.this.X, April.this.Y);
-        if(April.getApril().getPosition().x - Player.getPlayer().getPosition().x < 196 && April.getApril().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
-                April.getApril().getPosition().y - Player.getPlayer().getPosition().y < 196 && April.getApril().getPosition().y - Player.getPlayer().getPosition().y > - 196){
+        if ((April.getApril().getPosition().x - Player.getPlayer().getPosition().x < 196 && April.getApril().getPosition().x - Player.getPlayer().getPosition().x > -196 &&
+                April.getApril().getPosition().y - Player.getPlayer().getPosition().y < 196 && April.getApril().getPosition().y - Player.getPlayer().getPosition().y > -196) && !Dialogue.p2) {
             handleDialogue();
 
-            if(April.getApril().Left() && April.getApril().getPostionX() - Player.getPlayer().getPostionX() > 0){
-                April.getApril().flip();}
-            if(April.getApril().Right() && April.getApril().getPostionX() - Player.getPlayer().getPostionX() < 0){
-                April.getApril().flip();}
+            if (April.getApril().Left() && April.getApril().getPostionX() - Player.getPlayer().getPostionX() > 0) {
+                April.getApril().flip();
+            }
+            if (April.getApril().Right() && April.getApril().getPostionX() - Player.getPlayer().getPostionX() < 0) {
+                April.getApril().flip();
+            }
+        }
+        if(Dialogue.p2){
+            hair.setVisible(false);
+            eyes.setVisible(false);
+            body.setVisible(false);
+            lighting.setVisible(false);
+            hairshine.setVisible(false);
+            legs.setVisible(false);
         }
 
 
     }
 
-    public void handleDialogue(){
-        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+    public void handleDialogue() {
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             Dialogue.activateDialogue();
             level++;
         }
-        if(stage == 0) {
+        if (stage == 0) {
             switch (level) {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("April: No don't worry i'm just a twin, the person over there who looks like me is my sister Rachel");
+                    Dialogue.setText("April: No don't worry i'm just a twin, the person over there who looks like me is my sister Rachel.");
                     break;
                 case 3:
                 case 4:
@@ -93,7 +103,7 @@ public class April implements Entity {
                 case 5:
                 case 6:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("April: Yes. Although, not anymore");
+                    Dialogue.setText("April: Yes. Although, not anymore.");
                     break;
                 case 7:
                 case 8:
@@ -120,12 +130,12 @@ public class April implements Entity {
                 case 16:
                     Dialogue.reset();
                     level = 0;
-                    stage ++;
+                    stage++;
                     break;
 
             }
         }
-        if(stage == 1){
+        if (stage == 1) {
             switch (level) {
                 case 1:
                 case 2:
@@ -150,6 +160,35 @@ public class April implements Entity {
                 case 10:
                     level = 0;
                     break;
+            }
+        }
+
+        if (stage == 2) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("April: Uh oh, If this was Hank's work then i might be in danger.");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("April: When we were dating he told me a lot of his company's secrets.");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("You: Don't worry, nothing is going to happen to you.");
+                    break;
+                case 7:
+                case 8:
+                    t2 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
             }
         }
     }

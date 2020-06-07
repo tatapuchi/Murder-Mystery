@@ -18,10 +18,18 @@ public class Dialogue {
     private static final CustomActor dialogueActor = new CustomActor(dialogueRegion, 2500, 150, 0, 0);
     private static final FontActor font = new FontActor("", "Font/font.ttf", 16, false);
     private static final FontActor death = new FontActor("", "Font/font.ttf", 32, false);
+    private static final FontActor info = new FontActor("Press space to continue", "Font/font.ttf", 14, false);
     private static int i = 0;
     private static boolean finish = false;
     public static int progress = 0;
-    public static boolean p1, p2, p3, p4, p5, p6 = false;
+    public static boolean p1 = false;
+    public static boolean p2 = false;
+    public static boolean p3 = false;
+    public static boolean p4 = false;
+    public static boolean p5 = false;
+    public static boolean p6 = false;
+
+
 
     private Dialogue() {
     }
@@ -31,12 +39,15 @@ public class Dialogue {
         stage.addActor(font);
         stage.addActor(blackActor);
         stage.addActor(death);
+        stage.addActor(info);
         dialogueActor.setVisible(false);
         death.setVisible(false);
         blackActor.setVisible(false);
         font.setVisible(false);
+        info.setVisible(false);
         font.setPosition(30, 140);
         death.setPosition(450, Gdx.graphics.getHeight() / 2);
+        info.setPosition(450, (Gdx.graphics.getHeight()/2) - 50);
     }
 
     public static void activateDialogue() {
@@ -52,6 +63,7 @@ public class Dialogue {
     public static void deactivateBlackout() {
         blackActor.setVisible(false);
         death.setVisible(false);
+        info.setVisible(false);
     }
 
     public static void blackout() {
@@ -60,6 +72,15 @@ public class Dialogue {
             if (!p1) {
                 death.setVisible(true);
                 blackActor.setVisible(true);
+                info.setVisible(true);
+            }
+        }
+        if (progress == 2) {
+            death.setText("The Sisters have been killed");
+            if (!p2) {
+                death.setVisible(true);
+                blackActor.setVisible(true);
+                info.setVisible(true);
             }
         }
 
