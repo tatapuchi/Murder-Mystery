@@ -67,8 +67,8 @@ public class Ethan implements Entity {
 
 //            Dialogue.initDialogue(Dialogue.Ethan_Dialogue_1);
 
-        if(Ethan.getEthan().getPosition().x - Player.getPlayer().getPosition().x < 196 && Ethan.getEthan().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
-                Ethan.getEthan().getPosition().y - Player.getPlayer().getPosition().y < 196 && Ethan.getEthan().getPosition().y - Player.getPlayer().getPosition().y > - 196){
+        if((Ethan.getEthan().getPosition().x - Player.getPlayer().getPosition().x < 196 && Ethan.getEthan().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
+                Ethan.getEthan().getPosition().y - Player.getPlayer().getPosition().y < 196 && Ethan.getEthan().getPosition().y - Player.getPlayer().getPosition().y > - 196) && !Dialogue.p4){
             handleDialogue();
 
             if(Ethan.getEthan().Left() && Ethan.getEthan().getPostionX() - Player.getPlayer().getPostionX() > 0){
@@ -77,6 +77,14 @@ public class Ethan implements Entity {
                 Ethan.getEthan().flip();}
         }
 
+        if(Dialogue.p4){
+            hair.setVisible(false);
+            eyes.setVisible(false);
+            body.setVisible(false);
+            lighting.setVisible(false);
+            hairshine.setVisible(false);
+            legs.setVisible(false);
+        }
 
         }
 
@@ -175,6 +183,62 @@ public class Ethan implements Entity {
                 case 7:
                 case 8:
                     t2 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
+            }
+        }
+        if (stage == 3) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Ethan: Hank did this! I'm sure of it now!");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Ethan: I'm gonna take him out.");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("You: Ethan, don't do anything you'll regret!!!");
+                    break;
+                case 7:
+                case 8:
+                    t3 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
+            }
+        }
+        if (stage == 4) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Ethan: Good. He's dead.");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: I told you not to act rashly");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("Ethan: I do what i want! I don't report to you!");
+                    break;
+                case 7:
+                case 8:
+                    t4 = true;
                     Dialogue.deactivateDialogue();
                     break;
                 case 9:

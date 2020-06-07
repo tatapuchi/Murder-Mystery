@@ -171,6 +171,90 @@ public class Esther implements Entity {
 
             }
         }
+        if (stage == 3) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Esther: Two more dead? Who is doing this?");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Esther: Now i'm scared...");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("You: I'll be finding the killer soon, don't worry.");
+                    break;
+                case 7:
+                case 8:
+                    t3 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
+            }
+        }
+        if (stage == 4) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Esther: If he was the murder...");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Esther: Then i'm happy he is dead.");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("You: ...");
+                    break;
+                case 7:
+                case 8:
+                    t4 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
+            }
+        }
+        if (stage == 5) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Esther: OHHHH, I knew i shouldn't have come! I'm an introvert by nature!");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Esther: *Hyperventilating*");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("You: ...");
+                    break;
+                case 7:
+                case 8:
+                    t5 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
+            }
+        }
     }
 
     private void up() {

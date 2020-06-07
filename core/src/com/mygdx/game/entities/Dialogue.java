@@ -83,6 +83,48 @@ public class Dialogue {
                 info.setVisible(true);
             }
         }
+        if (progress == 3) {
+            death.setText("Ethan has killed Hank");
+            if (!p3) {
+                death.setVisible(true);
+                blackActor.setVisible(true);
+                info.setVisible(true);
+            }
+        }
+        if (progress == 4) {
+            death.setText("The detectives are dead");
+            if (!p4) {
+                death.setVisible(true);
+                blackActor.setVisible(true);
+                info.setVisible(true);
+            }
+        }
+        if (progress == 5) {
+            death.setPosition(50,Gdx.graphics.getHeight()/2);
+            info.setPosition(50,(Gdx.graphics.getHeight()/2) - 50);
+            death.setText("You have been killed, If you paid attention you'll figure it out");
+            info.setText("(If you don't know, maybe try again and get information from all the different dialogue tracks)");
+            if (!p5) {
+                death.setVisible(true);
+                blackActor.setVisible(true);
+                info.setVisible(true);
+            }
+            if (progress == 6) {
+                death.setText("If you paid attention you'll figure out who the killer was");
+                    death.setVisible(true);
+                    blackActor.setVisible(true);
+                    info.setVisible(true);
+
+            }
+            if (progress == 7) {
+                death.setText("Press Space to try again and see different dialogues tracks");
+                info.setText("(and maybe get enough information to find out who did it)");
+                death.setVisible(true);
+                blackActor.setVisible(true);
+                info.setVisible(true);
+
+            }
+        }
 
     }
 

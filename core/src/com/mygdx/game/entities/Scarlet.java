@@ -179,6 +179,90 @@ public class Scarlet implements Entity {
 
             }
         }
+        if (stage == 3) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Scarlet: Oh god, oh my god, oh my god!");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: The last thing we want to do is panic...");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("You: Lets try to keep calm...");
+                    break;
+                case 7:
+                case 8:
+                    t3 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
+            }
+        }
+        if (stage == 4) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Scarlet: Good thing we had Ethan!");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Scarlet: What would we do without him!");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("You: ...");
+                    break;
+                case 7:
+                case 8:
+                    t4 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
+            }
+        }
+        if (stage == 5) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Scarlet: I honestly don't know who it is anymore...");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: It'll be fine...");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("Scarlet: You know it won't.");
+                    break;
+                case 7:
+                case 8:
+                    t5 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
+            }
+        }
     }
 
     private void up() {

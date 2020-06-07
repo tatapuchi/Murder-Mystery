@@ -62,8 +62,8 @@ public class Hank implements Entity {
         lighting.setPosition(Hank.this.X, Hank.this.Y);
         hairshine.setPosition(Hank.this.X, Hank.this.Y);
         legs.setPosition(Hank.this.X, Hank.this.Y);
-        if(Hank.getHank().getPosition().x - Player.getPlayer().getPosition().x < 196 && Hank.getHank().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
-                Hank.getHank().getPosition().y - Player.getPlayer().getPosition().y < 196 && Hank.getHank().getPosition().y - Player.getPlayer().getPosition().y > - 196){
+        if((Hank.getHank().getPosition().x - Player.getPlayer().getPosition().x < 196 && Hank.getHank().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
+                Hank.getHank().getPosition().y - Player.getPlayer().getPosition().y < 196 && Hank.getHank().getPosition().y - Player.getPlayer().getPosition().y > - 196)&& !Dialogue.p3){
             handleDialogue();
 
             if(Hank.getHank().Left() && Hank.getHank().getPostionX() - Player.getPlayer().getPostionX() > 0){
@@ -71,6 +71,15 @@ public class Hank implements Entity {
             if(Hank.getHank().Right() && Hank.getHank().getPostionX() - Player.getPlayer().getPostionX() < 0){
                 Hank.getHank().flip();}
         }
+        if(Dialogue.p3){
+            hair.setVisible(false);
+            eyes.setVisible(false);
+            body.setVisible(false);
+            lighting.setVisible(false);
+            hairshine.setVisible(false);
+            legs.setVisible(false);
+        }
+
 
 
     }
@@ -197,6 +206,34 @@ public class Hank implements Entity {
                     break;
                 case 7:
                 case 8:
+                    level = 0;
+                    break;
+
+            }
+        }
+        if (stage == 3) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Hank: I know people think I did this but I swear I didnt!");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: Don't worry, I'm not biased.");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("Hank: Thank you for believing in me.");
+                    break;
+                case 7:
+                case 8:
+                    t3 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
                     level = 0;
                     break;
 

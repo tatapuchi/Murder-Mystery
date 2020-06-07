@@ -36,6 +36,8 @@ import com.mygdx.game.utilities.scene2d.ParticleActor;
 
 import org.omg.PortableInterceptor.DISCARDING;
 
+import java.util.Random;
+
 import javax.xml.soap.Text;
 
 import sun.security.krb5.internal.crypto.Des;
@@ -123,9 +125,6 @@ public class World extends State {
             TicketChecker.stage = 2;
         }
         if(Hank.t2  && Esther.t2 && Ethan.t2 && Titus.t2 && Bruce.t2 && April.t2 && Scarlet.t2 && Rachel.t2 && !Dialogue.p2){
-            System.out.println(Dialogue.progress);
-            System.out.println("DONEEEE");
-
             Dialogue.progress = 2;
             Hank.stage = 3;
             Titus.stage = 3;
@@ -136,6 +135,47 @@ public class World extends State {
             Bruce.stage = 3;
             Rachel.stage = 3;
             TicketChecker.stage = 3;
+
+        }
+
+        if( Ethan.t3 && !Dialogue.p3){
+            Dialogue.progress = 3;
+            Hank.stage = 4;
+            Titus.stage = 4;
+            April.stage = 4;
+            Esther.stage = 4;
+            Ethan.stage = 4;
+            Scarlet.stage = 4;
+            Bruce.stage = 4;
+            Rachel.stage = 4;
+            TicketChecker.stage = 4;
+
+        }
+
+        if( (Titus.t4 || Scarlet.t4 || Esther.t4 || Bruce.t4) && !Dialogue.p4){
+            Dialogue.progress = 4;
+            Hank.stage = 5;
+            Titus.stage = 5;
+            April.stage = 5;
+            Esther.stage = 5;
+            Ethan.stage = 5;
+            Scarlet.stage = 5;
+            Bruce.stage = 5;
+            Rachel.stage = 5;
+            TicketChecker.stage = 5;
+
+        }
+        if(  Scarlet.t5 && Esther.t5 && Bruce.t5 && !Dialogue.p5){
+            Dialogue.progress = 5;
+            Hank.stage = 6;
+            Titus.stage = 6;
+            April.stage = 6;
+            Esther.stage = 6;
+            Ethan.stage = 6;
+            Scarlet.stage = 6;
+            Bruce.stage = 6;
+            Rachel.stage = 6;
+            TicketChecker.stage = 6;
 
         }
         Dialogue.blackout();
@@ -166,6 +206,45 @@ public class World extends State {
             Rachel.level = 0;
         }
 
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !Dialogue.p3 && Dialogue.progress == 3) {
+            Dialogue.p3 = true;
+            Dialogue.deactivateDialogue();
+            Dialogue.deactivateBlackout();
+            Hank.level = 0;
+            Titus.level = 0;
+            April.level = 0;
+            Esther.level = 0;
+            Ethan.level = 0;
+            Scarlet.level = 0;
+            Bruce.level = 0;
+            Rachel.level = 0;
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !Dialogue.p4 && Dialogue.progress == 4) {
+            Dialogue.p4 = true;
+            Dialogue.deactivateDialogue();
+            Dialogue.deactivateBlackout();
+            Hank.level = 0;
+            Titus.level = 0;
+            April.level = 0;
+            Esther.level = 0;
+            Ethan.level = 0;
+            Scarlet.level = 0;
+            Bruce.level = 0;
+            Rachel.level = 0;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && Dialogue.progress == 5) {
+
+        Dialogue.progress = 6;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && Dialogue.progress == 6) {
+
+            Dialogue.progress = 7;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && Dialogue.progress == 7) {
+
+            gsm.push(new Menu(gsm));
+        }
     }
 
     @Override
@@ -187,12 +266,18 @@ public class World extends State {
 
     @Override
     public void render(SpriteBatch sb) {
+
         update(Gdx.graphics.getDeltaTime());
         Gdx.gl.glClearColor(rainbow().x, rainbow().y, rainbow().z, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
+//        if(!Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
         CameraUtilities.TrainCamera(cam, new Vector2(Player.getPlayer().getPostionX(), 1000 + (Player.getPlayer().getPostionY())/4));
+//    }
+//        else{
+//            CameraUtilities.shake(cam, new Vector2(10,10), 1f);
+//        }
         cam.update();
 
         stage.act(Gdx.graphics.getDeltaTime());

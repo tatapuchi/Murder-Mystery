@@ -57,8 +57,8 @@ public class TicketChecker implements Entity{
         hairshine.setPosition(TicketChecker.this.X, TicketChecker.this.Y);
         legs.setPosition(TicketChecker.this.X, TicketChecker.this.Y);
 
-        if(TicketChecker.getTicketChecker().getPosition().x - Player.getPlayer().getPosition().x < 196 && TicketChecker.getTicketChecker().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
-                TicketChecker.getTicketChecker().getPosition().y - Player.getPlayer().getPosition().y < 196 && TicketChecker.getTicketChecker().getPosition().y - Player.getPlayer().getPosition().y > - 196){
+        if((TicketChecker.getTicketChecker().getPosition().x - Player.getPlayer().getPosition().x < 196 && TicketChecker.getTicketChecker().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
+                TicketChecker.getTicketChecker().getPosition().y - Player.getPlayer().getPosition().y < 196 && TicketChecker.getTicketChecker().getPosition().y - Player.getPlayer().getPosition().y > - 196)&& !Dialogue.p2){
             handleDialogue();
 
             if(TicketChecker.getTicketChecker().Left() && TicketChecker.getTicketChecker().getPostionX() - Player.getPlayer().getPostionX() > 0){
@@ -67,6 +67,18 @@ public class TicketChecker implements Entity{
                 TicketChecker.getTicketChecker().flip();}
 
         }
+
+
+
+        if(Dialogue.p2){
+            hair.setVisible(false);
+            eyes.setVisible(false);
+            body.setVisible(false);
+            lighting.setVisible(false);
+            hairshine.setVisible(false);
+            legs.setVisible(false);
+        }
+
     }
 
     private void handleDialogue(){

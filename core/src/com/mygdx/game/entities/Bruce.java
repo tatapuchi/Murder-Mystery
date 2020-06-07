@@ -176,6 +176,90 @@ public class Bruce implements Entity {
 
             }
         }
+        if (stage == 3) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Bruce: Oh my god...");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: ...");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("Hank: Make sure nothing happens to Esther!");
+                    break;
+                case 7:
+                case 8:
+                    t3 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
+            }
+        }
+        if (stage == 4) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Bruce: Thank god Ethan killed him before he got to the rest of us!");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: Don't celebrate yet, we aren't sure if we are safe");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("You: Stay wary.");
+                    break;
+                case 7:
+                case 8:
+                    t4 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
+            }
+        }
+        if (stage == 5) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Bruce: We need to find out who is causing this and fast! We can't let this kill all of us.");
+                    Dialogue.activateDialogue();
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: You're right, and most of all, we need to stay calm and composed.");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.setText("You: I suggest with stay close together...");
+                    break;
+                case 7:
+                case 8:
+                    t5 = true;
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
+                    level = 0;
+                    break;
+
+            }
+        }
     }
 
     private void up() {
