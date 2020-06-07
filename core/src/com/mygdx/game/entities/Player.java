@@ -138,19 +138,19 @@ public class Player implements Entity{
     }
 
     private void up() {
-        Y += 6;
+        Y += 16;
     }
 
     private void down() {
-        Y -= 6;
+        Y -= 16;
     }
 
     private void right() {
-        X += 6;
+        X += 16;
     }
 
     private void left() {
-        X -= 6;
+        X -= 16;
     }
 
     public void drawbody(Stage stage) {

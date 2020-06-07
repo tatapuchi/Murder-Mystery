@@ -21,6 +21,9 @@ public class Hank implements Entity {
     private boolean interact;
     private int level, stage;
 
+    public static boolean t1,t2,t3, t4, t5, t6 = false;
+
+
     private Hank() {
 
         bolbManager = new BolbManager();
@@ -62,6 +65,11 @@ public class Hank implements Entity {
         if(Hank.getHank().getPosition().x - Player.getPlayer().getPosition().x < 196 && Hank.getHank().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Hank.getHank().getPosition().y - Player.getPlayer().getPosition().y < 196 && Hank.getHank().getPosition().y - Player.getPlayer().getPosition().y > - 196){
             handleDialogue();
+
+            if(Hank.getHank().Left() && Hank.getHank().getPostionX() - Player.getPlayer().getPostionX() > 0){
+                Hank.getHank().flip();}
+            if(Hank.getHank().Right() && Hank.getHank().getPostionX() - Player.getPlayer().getPostionX() < 0){
+                Hank.getHank().flip();}
         }
 
 
@@ -72,7 +80,7 @@ public class Hank implements Entity {
             Dialogue.activateDialogue();
             level++;
         }
-        if(stage == 0) {
+        if(stage == 0 && !Dialogue.p1) {
             switch (level) {
                 case 1:
                 case 2:
@@ -102,9 +110,12 @@ public class Hank implements Entity {
                 case 11:
                 case 12:
                     Dialogue.deactivateDialogue();
+                    t1 = true;
+                    Dialogue.progression();
                     break;
                 case 13:
                 case 14:
+                    Dialogue.reset();
                     level = 0;
                     stage ++;
 
@@ -121,6 +132,28 @@ public class Hank implements Entity {
                 case 4:
                     Dialogue.activateDialogue();
                     Dialogue.setText("Hank: Of course you can have a selfie!");
+                    break;
+                case 5:
+                case 6:
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 7:
+                case 8:
+                    level = 0;
+                    break;
+            }
+        }
+        if(stage == 2){
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Hank: Barney is dead, oh my, but how?");
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("Hank: It couldn't have been of all the drinking, someone must have killed him");
                     break;
                 case 5:
                 case 6:

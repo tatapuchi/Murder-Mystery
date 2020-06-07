@@ -60,6 +60,12 @@ public class TicketChecker implements Entity{
         if(TicketChecker.getTicketChecker().getPosition().x - Player.getPlayer().getPosition().x < 196 && TicketChecker.getTicketChecker().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 TicketChecker.getTicketChecker().getPosition().y - Player.getPlayer().getPosition().y < 196 && TicketChecker.getTicketChecker().getPosition().y - Player.getPlayer().getPosition().y > - 196){
             handleDialogue();
+
+            if(TicketChecker.getTicketChecker().Left() && TicketChecker.getTicketChecker().getPostionX() - Player.getPlayer().getPostionX() > 0){
+                TicketChecker.getTicketChecker().flip();}
+            if(TicketChecker.getTicketChecker().Right() && TicketChecker.getTicketChecker().getPostionX() - Player.getPlayer().getPostionX() < 0){
+                TicketChecker.getTicketChecker().flip();}
+
         }
     }
 
@@ -163,15 +169,16 @@ public class TicketChecker implements Entity{
         TicketChecker.getTicketChecker().eyes.getAnimation().getFrame().flip(true, false);
         TicketChecker.getTicketChecker().hairshine.getAnimation().getFrame().flip(true, false);
         TicketChecker.getTicketChecker().legs.getAnimation().getFrame().flip(true, false);
+        TicketChecker.getTicketChecker().lighting.getAnimation().getFrame().flip(true, false);
     }
 
     private boolean Left() {
-        return !TicketChecker.getTicketChecker().body.getAnimation().getFrame().isFlipX();
+        return TicketChecker.getTicketChecker().body.getAnimation().getFrame().isFlipX();
 
     }
 
     private boolean Right() {
-        return TicketChecker.getTicketChecker().body.getAnimation().getFrame().isFlipX();
+        return !TicketChecker.getTicketChecker().body.getAnimation().getFrame().isFlipX();
 
     }
 

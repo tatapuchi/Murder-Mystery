@@ -21,6 +21,9 @@ public class Ethan implements Entity {
     int level = 0;
     int stage = 0;
 
+    public static boolean t1,t2,t3, t4, t5, t6 = false;
+
+
     private Ethan() {
 
 
@@ -67,6 +70,11 @@ public class Ethan implements Entity {
         if(Ethan.getEthan().getPosition().x - Player.getPlayer().getPosition().x < 196 && Ethan.getEthan().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Ethan.getEthan().getPosition().y - Player.getPlayer().getPosition().y < 196 && Ethan.getEthan().getPosition().y - Player.getPlayer().getPosition().y > - 196){
             handleDialogue();
+
+            if(Ethan.getEthan().Left() && Ethan.getEthan().getPostionX() - Player.getPlayer().getPostionX() > 0){
+                Ethan.getEthan().flip();}
+            if(Ethan.getEthan().Right() && Ethan.getEthan().getPostionX() - Player.getPlayer().getPostionX() < 0){
+                Ethan.getEthan().flip();}
         }
 
 
@@ -110,9 +118,12 @@ public class Ethan implements Entity {
                 case 11:
                 case 12:
                     Dialogue.deactivateDialogue();
+                    t1 = true;
+                    Dialogue.progression();
                     break;
                 case 13:
                 case 14:
+                    Dialogue.reset();
                     level = 0;
                     stage ++;
 

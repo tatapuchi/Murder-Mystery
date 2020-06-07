@@ -21,13 +21,16 @@ public class Barney implements Entity {
     private boolean interact;
     private int level, stage;
 
+    public static boolean t1,t2,t3, t4, t5, t6 = false;
+
+
     private Barney() {
 
         bolbManager = new BolbManager();
         bolbManager.loadCharacter();
 
-        X = 1340;
-        Y = 50;
+        X = 20;
+        Y = 380;
 
 
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Barney.this.X, Barney.this.Y);
@@ -59,9 +62,18 @@ public class Barney implements Entity {
         lighting.setPosition(Barney.this.X, Barney.this.Y);
         hairshine.setPosition(Barney.this.X, Barney.this.Y);
         legs.setPosition(Barney.this.X, Barney.this.Y);
-        if(Barney.getBarney().getPosition().x - Player.getPlayer().getPosition().x < 196 && Barney.getBarney().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
-                Barney.getBarney().getPosition().y - Player.getPlayer().getPosition().y < 196 && Barney.getBarney().getPosition().y - Player.getPlayer().getPosition().y > - 196){
+        if((Barney.getBarney().getPosition().x - Player.getPlayer().getPosition().x < 196 && Barney.getBarney().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
+                Barney.getBarney().getPosition().y - Player.getPlayer().getPosition().y < 196 && Barney.getBarney().getPosition().y - Player.getPlayer().getPosition().y > - 196)&& !Dialogue.p1){
             handleDialogue();
+        }
+
+        if(Dialogue.p1){
+            hair.setVisible(false);
+            eyes.setVisible(false);
+            body.setVisible(false);
+            lighting.setVisible(false);
+            hairshine.setVisible(false);
+            legs.setVisible(false);
         }
 
 
@@ -93,13 +105,17 @@ public class Barney implements Entity {
                 case 8:
                     Dialogue.activateDialogue();
                     Dialogue.setText("You: Epic");
+                    Dialogue.progression();
                     break;
                 case 9:
                 case 10:
                     Dialogue.deactivateDialogue();
+                    t1 = true;
+                    Dialogue.reset();
                     break;
                 case 11:
                 case 12:
+
                     level = 0;
                     stage ++;
 

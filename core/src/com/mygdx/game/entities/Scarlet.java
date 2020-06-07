@@ -20,26 +20,29 @@ public class Scarlet implements Entity {
     private boolean interact;
     private int level, stage;
 
+    public static boolean t1,t2,t3, t4, t5, t6 = false;
+
+
     private Scarlet() {
 
         bolbManager = new BolbManager();
         bolbManager.loadCharacter();
 
-        X = 2840;
-        Y = 80;
+        X = 4840;
+        Y = 480;
 
 
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Scarlet.this.X, Scarlet.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, Scarlet.this.X, Scarlet.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, Scarlet.this.X, Scarlet.this.Y);
-        hair = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.DefaultHair)), 3, 0.4f, 455, 382, Scarlet.this.X, Scarlet.this.Y);
-        hairshine = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.DefaultHairShine)), 3, 0.4f, 455, 382, Scarlet.this.X, Scarlet.this.Y);
+        hair = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.JesterHair)), 3, 0.4f, 455, 382, Scarlet.this.X, Scarlet.this.Y);
+        hairshine = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.JesterHairShine)), 3, 0.4f, 455, 382, Scarlet.this.X, Scarlet.this.Y);
         legs = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Legs)), 3, 0.4f, 455, 382, Scarlet.this.X, Scarlet.this.Y);
 
-        body.setHSV(360, 0.54f, 0.7f);
-        lighting.setHSV(345, 0.3f, 1f);
+        body.setHSV(360, 0.0f, 1f);
+        lighting.setHSV(345, 0.0f, 1f);
         eyes.setHSV(0, 0f, 0f);
-        hair.setHSV(139, 0.5f, 0f);
+        hair.setHSV(0, 1f, 1f);
         legs.setHSV(360, 0.3f, 1f);
         hairshine.setHSV(0, 0f, 1f);
 
@@ -58,10 +61,17 @@ public class Scarlet implements Entity {
         lighting.setPosition(Scarlet.this.X, Scarlet.this.Y);
         hairshine.setPosition(Scarlet.this.X, Scarlet.this.Y);
         legs.setPosition(Scarlet.this.X, Scarlet.this.Y);
+
         if(Scarlet.getScarlet().getPosition().x - Player.getPlayer().getPosition().x < 196 && Scarlet.getScarlet().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Scarlet.getScarlet().getPosition().y - Player.getPlayer().getPosition().y < 196 && Scarlet.getScarlet().getPosition().y - Player.getPlayer().getPosition().y > - 196){
             handleDialogue();
+
+            if(Scarlet.getScarlet().Left() && Scarlet.getScarlet().getPostionX() - Player.getPlayer().getPostionX() > 0){
+                Scarlet.getScarlet().flip();}
+            if(Scarlet.getScarlet().Right() && Scarlet.getScarlet().getPostionX() - Player.getPlayer().getPostionX() < 0){
+                Scarlet.getScarlet().flip();}
         }
+
 
 
     }
@@ -76,34 +86,37 @@ public class Scarlet implements Entity {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Scarlet: Greetings fellow passenger!");
+                    Dialogue.setText("Scarlet: Hi, i'm Scarlet");
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: Whoah. Scarlet McScarlet from egg salad incorporated?!?");
+                    Dialogue.setText("You: You broke up with Hank? Wait, why am i doing this?");
                     break;
                 case 5:
                 case 6:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Scarlet: The very one!");
+                    Dialogue.setText("Scarlet: He is a dirty cheater.");
                     break;
                 case 7:
                 case 8:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: I'm a big fan");
+                    Dialogue.setText("You: I honestly could not care less.");
                     break;
                 case 9:
                 case 10:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Scarlet: Haha!");
+                    Dialogue.setText("You: And why in the blue heck are you all on the same train?");
                     break;
                 case 11:
                 case 12:
                     Dialogue.deactivateDialogue();
+                    t1 = true;
+                    Dialogue.progression();
                     break;
                 case 13:
                 case 14:
+                    Dialogue.reset();
                     level = 0;
                     stage ++;
 
@@ -114,19 +127,24 @@ public class Scarlet implements Entity {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Scarlet: I know that look...");
+                    Dialogue.setText("Scarlet: Oh me? I'm a fashion designer, Rachel back there is one of my models");
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Scarlet: Of course you can have a selfie!");
+                    Dialogue.setText("Scarlet: I could hook you up with something, if you just let me take some measurements");
                     break;
                 case 5:
                 case 6:
-                    Dialogue.deactivateDialogue();
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: Get away from me devil woman!");
                     break;
                 case 7:
                 case 8:
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
                     level = 0;
                     break;
             }

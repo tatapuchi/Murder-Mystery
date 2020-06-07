@@ -21,26 +21,29 @@ public class Rachel implements Entity {
     private boolean interact;
     private int level, stage;
 
+    public static boolean t1,t2,t3, t4, t5, t6 = false;
+
+
     private Rachel() {
 
         bolbManager = new BolbManager();
         bolbManager.loadCharacter();
 
-        X = 2740;
+        X = 3740;
         Y = 80;
 
 
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Rachel.this.X, Rachel.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, Rachel.this.X, Rachel.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, Rachel.this.X, Rachel.this.Y);
-        hair = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.DefaultHair)), 3, 0.4f, 455, 382, Rachel.this.X, Rachel.this.Y);
-        hairshine = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.DefaultHairShine)), 3, 0.4f, 455, 382, Rachel.this.X, Rachel.this.Y);
+        hair = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.JesterHair)), 3, 0.4f, 455, 382, Rachel.this.X, Rachel.this.Y);
+        hairshine = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.JesterHairShine)), 3, 0.4f, 455, 382, Rachel.this.X, Rachel.this.Y);
         legs = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Legs)), 3, 0.4f, 455, 382, Rachel.this.X, Rachel.this.Y);
 
-        body.setHSV(360, 0.54f, 0.7f);
+        body.setHSV(360, 0.64f, 0.6f);
         lighting.setHSV(345, 0.3f, 1f);
         eyes.setHSV(0, 0f, 0f);
-        hair.setHSV(139, 0.5f, 0f);
+        hair.setHSV(168, 1f, 1f);
         legs.setHSV(360, 0.3f, 1f);
         hairshine.setHSV(0, 0f, 1f);
 
@@ -62,6 +65,11 @@ public class Rachel implements Entity {
         if(Rachel.getRachel().getPosition().x - Player.getPlayer().getPosition().x < 196 && Rachel.getRachel().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Rachel.getRachel().getPosition().y - Player.getPlayer().getPosition().y < 196 && Rachel.getRachel().getPosition().y - Player.getPlayer().getPosition().y > - 196){
             handleDialogue();
+
+            if(Rachel.getRachel().Left() && Rachel.getRachel().getPostionX() - Player.getPlayer().getPostionX() > 0){
+                Rachel.getRachel().flip();}
+            if(Rachel.getRachel().Right() && Rachel.getRachel().getPostionX() - Player.getPlayer().getPostionX() < 0){
+                Rachel.getRachel().flip();}
         }
 
 
@@ -77,36 +85,45 @@ public class Rachel implements Entity {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Rachel: Greetings fellow passenger!");
+                    Dialogue.setText("You: Do i know you from somewhere?");
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: Whoah. Rachel McRachel from egg salad incorporated?!?");
+                    Dialogue.setText("Rachel: Probably my twin sister, she is an actor");
                     break;
                 case 5:
                 case 6:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Rachel: The very one!");
+                    Dialogue.setText("Rachel: But you may know me, i'm a model, Hank helped me get this far with my career");
                     break;
                 case 7:
                 case 8:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: I'm a big fan");
+                    Dialogue.setText("You: How does everyone know Hank, and how are you all on the same train?!?");
                     break;
                 case 9:
                 case 10:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Rachel: Haha!");
+                    Dialogue.setText("Rachel: ...");
                     break;
                 case 11:
                 case 12:
-                    Dialogue.deactivateDialogue();
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: ...");
                     break;
                 case 13:
                 case 14:
+                    Dialogue.deactivateDialogue();
+                    t1 = true;
+                    Dialogue.progression();
+                    break;
+                case 15:
+                case 16:
+                    Dialogue.reset();
                     level = 0;
                     stage ++;
+                    break;
 
             }
         }
@@ -115,12 +132,12 @@ public class Rachel implements Entity {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Rachel: I know that look...");
+                    Dialogue.setText("Rachel: Can't believe that turd Scarlet broke up with Hank!");
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Rachel: Of course you can have a selfie!");
+                    Dialogue.setText("You: Let me guess, she's also on the train?");
                     break;
                 case 5:
                 case 6:

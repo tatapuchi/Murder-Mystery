@@ -20,14 +20,16 @@ public class Esther implements Entity {
     BolbManager bolbManager;
     private boolean interact;
     private int level, stage;
+    public static boolean t1,t2,t3, t4, t5, t6 = false;
+
 
     private Esther() {
 
         bolbManager = new BolbManager();
         bolbManager.loadCharacter();
 
-        X = 1540;
-        Y = 80;
+        X = 5740;
+        Y = 480;
 
 
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, Esther.this.X, Esther.this.Y);
@@ -37,10 +39,10 @@ public class Esther implements Entity {
         hairshine = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.DefaultHairShine)), 3, 0.4f, 455, 382, Esther.this.X, Esther.this.Y);
         legs = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Legs)), 3, 0.4f, 455, 382, Esther.this.X, Esther.this.Y);
 
-        body.setHSV(360, 0.54f, 0.7f);
+        body.setHSV(360, 0.24f, 0.7f);
         lighting.setHSV(345, 0.3f, 1f);
         eyes.setHSV(0, 0f, 0f);
-        hair.setHSV(139, 0.5f, 0f);
+        hair.setHSV(200, 0.7f, 1f);
         legs.setHSV(360, 0.3f, 1f);
         hairshine.setHSV(0, 0f, 1f);
 
@@ -62,6 +64,11 @@ public class Esther implements Entity {
         if(Esther.getEsther().getPosition().x - Player.getPlayer().getPosition().x < 196 && Esther.getEsther().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Esther.getEsther().getPosition().y - Player.getPlayer().getPosition().y < 196 && Esther.getEsther().getPosition().y - Player.getPlayer().getPosition().y > - 196){
             handleDialogue();
+
+            if(Esther.getEsther().Left() && Esther.getEsther().getPostionX() - Player.getPlayer().getPostionX() > 0){
+                Esther.getEsther().flip();}
+            if(Esther.getEsther().Right() && Esther.getEsther().getPostionX() - Player.getPlayer().getPostionX() < 0){
+                Esther.getEsther().flip();}
         }
 
 
@@ -77,34 +84,37 @@ public class Esther implements Entity {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Esther: Greetings fellow passenger!");
+                    Dialogue.setText("Esther: Hi, I don't usually go on trips like these, but my husband wanted me to come...");
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: Whoah. Esther McEsther from egg salad incorporated?!?");
+                    Dialogue.setText("You: Really? Where are you going?");
                     break;
                 case 5:
                 case 6:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Esther: The very one!");
+                    Dialogue.setText("Esther: Yes!");
                     break;
                 case 7:
                 case 8:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: I'm a big fan");
+                    Dialogue.setText("You: I'm sorry, what? I asked you where you were headed?");
                     break;
                 case 9:
                 case 10:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Esther: Haha!");
+                    Dialogue.setText("Esther: I heard, its just that the developer did not have time to program a proper response.");
                     break;
                 case 11:
                 case 12:
                     Dialogue.deactivateDialogue();
+                    t1 = true;
+                    Dialogue.progression();
                     break;
                 case 13:
                 case 14:
+                    Dialogue.reset();
                     level = 0;
                     stage ++;
 
@@ -115,12 +125,12 @@ public class Esther implements Entity {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Esther: I know that look...");
+                    Dialogue.setText("Esther: Look at those pretty fields!");
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Esther: Of course you can have a selfie!");
+                    Dialogue.setText("You: Since when does the developer have time to draw fields?");
                     break;
                 case 5:
                 case 6:

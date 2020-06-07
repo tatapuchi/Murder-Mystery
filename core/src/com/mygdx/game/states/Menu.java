@@ -2,24 +2,36 @@ package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.management.GameStateManager;
 import com.mygdx.game.management.State;
-import com.mygdx.game.utilities.General;
 import com.mygdx.game.utilities.scene2d.FontActor;
 
-public class Menu extends State{
-    FontActor font;
+import java.util.Random;
+
+public class Menu extends State {
+    FontActor font, title, description;
     Stage stage;
+
     public Menu(final GameStateManager gsm) {
         super(gsm);
-         stage = new Stage();
-         FontActor font = new FontActor("Left Click to Continue","Font/font.ttf", 24, false);
-         font.setPosition(Gdx.graphics.getWidth()/3,Gdx.graphics.getHeight()/3);
-         stage.addActor(font);
+        stage = new Stage();
+        font = new FontActor("Left Click to Continue", "Font/font.ttf", 24, false);
+        title = new FontActor("Overly Pixelated Murder-Mystery", "Font/font.ttf", 24, false);
+        description = new FontActor("By Eggz team", "Font/font.ttf", 16, false);
+        font.setPosition(500, Gdx.graphics.getHeight() / 2);
+        title.setPosition(30, 700);
+        description.setPosition(30, 660);
+        stage.addActor(font);
+        stage.addActor(title);
+        stage.addActor(description);
+        Pixmap pm = new Pixmap(Gdx.files.internal("HUD/Cursor.png"));
+        Gdx.graphics.setCursor(Gdx.graphics.newCursor(pm, 0, 0));
+
     }
 
     @Override
@@ -31,7 +43,7 @@ public class Menu extends State{
 
     @Override
     public void update(float dt) {
-        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             gsm.push(new World(gsm));
         }
 
@@ -39,8 +51,9 @@ public class Menu extends State{
 
     @Override
     public void render(SpriteBatch sb) {
-        Gdx.gl.glClearColor(0.4f, 0.2f, 0.6f, 1f);
+        Gdx.gl.glClearColor(rainbow().x, rainbow().y, rainbow().z, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
 
@@ -49,6 +62,44 @@ public class Menu extends State{
 
     @Override
     public void dispose() {
-    stage.dispose();
+        stage.dispose();
     }
+
+
+    float r, g, b;
+
+    public Vector3 rainbow() {
+        if (r < 1f && g == 0.0f && b == 0.0f) {
+            r += 0.001f;
+        }
+        if (r > 0.98f) {
+            if(b>0.0f){
+                b-=0.001f;
+            }
+            if (b < 0.02f && g < 1f) {
+                g += 0.001f;
+            }
+        }
+        if (g > 0.98f) {
+            if (r > 0.0f) {
+                r -= 0.001f;
+            } else if (r < 0.02f) {
+                if (b < 1f) {
+                    b += 0.001f;
+                }
+            }
+            if (b > 0.98f) {
+                if (g > 0.0f) {
+                    g -= 0.001f;
+                }
+                if (g < 0.02f) {
+                    r += 0.001f;
+                }
+            }
+
+        }
+        return new Vector3(r,g,b);
+
+    }
+
 }

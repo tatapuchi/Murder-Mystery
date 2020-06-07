@@ -21,12 +21,15 @@ public class Titus implements Entity {
     private boolean interact;
     private int level, stage;
 
+    public static boolean t1,t2,t3, t4, t5, t6 = false;
+
+
     private Titus() {
 
         bolbManager = new BolbManager();
         bolbManager.loadCharacter();
 
-        X = 2640;
+        X = 4640;
         Y = 80;
 
 
@@ -62,6 +65,11 @@ public class Titus implements Entity {
         if(Titus.getTitus().getPosition().x - Player.getPlayer().getPosition().x < 196 && Titus.getTitus().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Titus.getTitus().getPosition().y - Player.getPlayer().getPosition().y < 196 && Titus.getTitus().getPosition().y - Player.getPlayer().getPosition().y > - 196){
             handleDialogue();
+
+            if(Titus.getTitus().Left() && Titus.getTitus().getPostionX() - Player.getPlayer().getPostionX() > 0){
+                Titus.getTitus().flip();}
+            if(Titus.getTitus().Right() && Titus.getTitus().getPostionX() - Player.getPlayer().getPostionX() < 0){
+                Titus.getTitus().flip();}
         }
 
 
@@ -72,55 +80,75 @@ public class Titus implements Entity {
             Dialogue.activateDialogue();
             level++;
         }
-        if(stage == 0) {
+        if(stage == 0  && !Dialogue.p1) {
             switch (level) {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Titus: Greetings fellow passenger!");
+                    Dialogue.setText("Titus: I am Ethan's assistant");
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: Whoah. Titus McTitus from egg salad incorporated?!?");
+                    Dialogue.setText("You: Why on earth does he need an assistant now?");
                     break;
                 case 5:
                 case 6:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Titus: The very one!");
+                    Dialogue.setText("Titus: He is a detective, technically i am his partner on this case, but he is in a higher rank than me");
                     break;
                 case 7:
                 case 8:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: I'm a big fan");
+                    Dialogue.setText("You: Why are you giving me potentially confidential information");
                     break;
                 case 9:
                 case 10:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Titus: Haha!");
+                    Dialogue.setText("Titus: ...");
                     break;
                 case 11:
                 case 12:
                     Dialogue.deactivateDialogue();
+                    t1 = true;
+                    Dialogue.progression();
                     break;
                 case 13:
                 case 14:
+                    Dialogue.reset();
                     level = 0;
                     stage ++;
 
             }
         }
-        if(stage == 1){
+        if(stage == 1 && !Dialogue.p1){
             switch (level) {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Titus: I know that look...");
+                    Dialogue.setText("Titus: ...");
+                    break;
+                case 3:
+                case 4:
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 5:
+                case 6:
+                    level = 0;
+                    break;
+            }
+        }
+        if(Dialogue.p1) {
+            switch (level) {
+                case 1:
+                case 2:
+                    Dialogue.setText("Titus: Barney is dead, I'm betting it has something to do with Esther and Bruce, they had some sort of weird love triangle or something");
+                    Dialogue.activateDialogue();
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Titus: Of course you can have a selfie!");
+                    Dialogue.setText("You: Interesting. A murder on a train? I'll ask around for clues...");
                     break;
                 case 5:
                 case 6:
@@ -130,6 +158,7 @@ public class Titus implements Entity {
                 case 8:
                     level = 0;
                     break;
+
             }
         }
     }

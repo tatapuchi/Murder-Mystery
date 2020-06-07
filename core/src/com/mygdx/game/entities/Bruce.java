@@ -21,6 +21,9 @@ public class Bruce implements Entity {
     private boolean interact;
     private int level, stage;
 
+    public static boolean t1,t2,t3, t4, t5, t6 = false;
+
+
     private Bruce() {
 
         bolbManager = new BolbManager();
@@ -62,6 +65,11 @@ public class Bruce implements Entity {
         if(Bruce.getBruce().getPosition().x - Player.getPlayer().getPosition().x < 196 && Bruce.getBruce().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 Bruce.getBruce().getPosition().y - Player.getPlayer().getPosition().y < 196 && Bruce.getBruce().getPosition().y - Player.getPlayer().getPosition().y > - 196){
             handleDialogue();
+
+            if(Bruce.getBruce().Left() && Bruce.getBruce().getPostionX() - Player.getPlayer().getPostionX() > 0){
+                Bruce.getBruce().flip();}
+            if(Bruce.getBruce().Right() && Bruce.getBruce().getPostionX() - Player.getPlayer().getPostionX() < 0){
+                Bruce.getBruce().flip();}
         }
 
 
@@ -77,34 +85,38 @@ public class Bruce implements Entity {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Bruce: Greetings fellow passenger!");
+                    Dialogue.setText("Bruce: Ello ello ello!");
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: Whoah. Bruce McBruce from egg salad incorporated?!?");
+                    Dialogue.setText("You: Hello.");
                     break;
                 case 5:
                 case 6:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Bruce: The very one!");
+                    Dialogue.setText("Bruce: Whats all this then! Bruce Buckingham, at your service.");
                     break;
                 case 7:
                 case 8:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: I'm a big fan");
+                    Dialogue.setText("You: Yes.");
                     break;
                 case 9:
                 case 10:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Bruce: Haha!");
+                    Dialogue.setText("Bruce: Didja see my wife Esther? She must be around here somewhere!");
+                    Dialogue.progression();
                     break;
                 case 11:
                 case 12:
                     Dialogue.deactivateDialogue();
+                    t1 = true;
+                    Dialogue.reset();
                     break;
                 case 13:
                 case 14:
+
                     level = 0;
                     stage ++;
 
@@ -115,12 +127,12 @@ public class Bruce implements Entity {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Bruce: I know that look...");
+                    Dialogue.setText("Bruce: Oh Barney? That's my wife's other husband.");
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("Bruce: Of course you can have a selfie!");
+                    Dialogue.setText("You: What is wrong with you people?");
                     break;
                 case 5:
                 case 6:

@@ -20,6 +20,8 @@ public class April implements Entity {
     private boolean interact;
     private int level, stage;
 
+    public static boolean t1,t2,t3, t4, t5, t6 = false;
+
     private April() {
 
         bolbManager = new BolbManager();
@@ -32,14 +34,14 @@ public class April implements Entity {
         body = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Body)), 3, 0.4f, 455, 382, April.this.X, April.this.Y);
         eyes = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Eyes)), 3, 0.4f, 455, 382, April.this.X, April.this.Y);
         lighting = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Lighting)), 3, 0.4f, 455, 382, April.this.X, April.this.Y);
-        hair = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.DefaultHair)), 3, 0.4f, 455, 382, April.this.X, April.this.Y);
-        hairshine = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.DefaultHairShine)), 3, 0.4f, 455, 382, April.this.X, April.this.Y);
+        hair = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.JesterHair)), 3, 0.4f, 455, 382, April.this.X, April.this.Y);
+        hairshine = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.JesterHairShine)), 3, 0.4f, 455, 382, April.this.X, April.this.Y);
         legs = new CustomAnimation(new TextureRegion(bolbManager.get(bolbManager.Legs)), 3, 0.4f, 455, 382, April.this.X, April.this.Y);
 
-        body.setHSV(360, 0.54f, 0.7f);
+        body.setHSV(360, 0.64f, 0.6f);
         lighting.setHSV(345, 0.3f, 1f);
         eyes.setHSV(0, 0f, 0f);
-        hair.setHSV(139, 0.5f, 0f);
+        hair.setHSV(139, 1f, 1f);
         legs.setHSV(360, 0.3f, 1f);
         hairshine.setHSV(0, 0f, 1f);
 
@@ -61,6 +63,11 @@ public class April implements Entity {
         if(April.getApril().getPosition().x - Player.getPlayer().getPosition().x < 196 && April.getApril().getPosition().x - Player.getPlayer().getPosition().x > - 196 &&
                 April.getApril().getPosition().y - Player.getPlayer().getPosition().y < 196 && April.getApril().getPosition().y - Player.getPlayer().getPosition().y > - 196){
             handleDialogue();
+
+            if(April.getApril().Left() && April.getApril().getPostionX() - Player.getPlayer().getPostionX() > 0){
+                April.getApril().flip();}
+            if(April.getApril().Right() && April.getApril().getPostionX() - Player.getPlayer().getPostionX() < 0){
+                April.getApril().flip();}
         }
 
 
@@ -76,36 +83,45 @@ public class April implements Entity {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("April: Greetings fellow passenger!");
+                    Dialogue.setText("April: No don't worry i'm just a twin, the person over there who looks like me is my sister Rachel");
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: Whoah. April McApril from egg salad incorporated?!?");
+                    Dialogue.setText("You: Didn't you star in \"Generic Show 5\"?");
                     break;
                 case 5:
                 case 6:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("April: The very one!");
+                    Dialogue.setText("April: Yes. Although, not anymore");
                     break;
                 case 7:
                 case 8:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("You: I'm a big fan");
+                    Dialogue.setText("April: I can't seem to do anything after i found out that Hank was cheating on me...");
                     break;
                 case 9:
                 case 10:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("April: Haha!");
+                    Dialogue.setText("April: I just feel so betrayed!");
                     break;
                 case 11:
                 case 12:
-                    Dialogue.deactivateDialogue();
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: I don't know you, and we just met, why would you tell me that?");
+                    t1 = true;
+                    Dialogue.progression();
                     break;
                 case 13:
                 case 14:
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 15:
+                case 16:
+                    Dialogue.reset();
                     level = 0;
                     stage ++;
+                    break;
 
             }
         }
@@ -114,19 +130,24 @@ public class April implements Entity {
                 case 1:
                 case 2:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("April: I know that look...");
+                    Dialogue.setText("April: Oh Hank...");
                     break;
                 case 3:
                 case 4:
                     Dialogue.activateDialogue();
-                    Dialogue.setText("April: Of course you can have a selfie!");
+                    Dialogue.setText("April: *cries*");
                     break;
                 case 5:
                 case 6:
-                    Dialogue.deactivateDialogue();
+                    Dialogue.activateDialogue();
+                    Dialogue.setText("You: Um, would you like a sandwich?");
                     break;
                 case 7:
                 case 8:
+                    Dialogue.deactivateDialogue();
+                    break;
+                case 9:
+                case 10:
                     level = 0;
                     break;
             }

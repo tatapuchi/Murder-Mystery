@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.mygdx.game.entities.April;
@@ -107,7 +108,15 @@ public class World extends State {
             Gdx.app.exit();
         }
 
-
+        if(Hank.t1 && Barney.t1 && Ethan.t1 && Titus.t1 && Esther.t1){
+            Dialogue.progress += 1;
+        }
+        Dialogue.blackout();
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !Dialogue.p1) {
+            Dialogue.p1 = true;
+            Dialogue.deactivateBlackout();
+            System.out.println("DONE");
+        }
 
     }
 
@@ -131,7 +140,7 @@ public class World extends State {
     @Override
     public void render(SpriteBatch sb) {
         update(Gdx.graphics.getDeltaTime());
-        Gdx.gl.glClearColor(0.7f, 0.8f, 0.3f, 1);
+        Gdx.gl.glClearColor(rainbow().x, rainbow().y, rainbow().z, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
@@ -146,6 +155,40 @@ public class World extends State {
 
     @Override
     public void dispose() {
+
+    }
+    float r, g, b;
+    public Vector3 rainbow() {
+        if (r < 1f && g == 0.0f && b == 0.0f) {
+            r += 0.001f;
+        }
+        if (r > 0.98f) {
+            if(b>0.0f){
+                b-=0.001f;
+            }
+            if (b < 0.02f && g < 1f) {
+                g += 0.001f;
+            }
+        }
+        if (g > 0.98f) {
+            if (r > 0.0f) {
+                r -= 0.001f;
+            } else if (r < 0.02f) {
+                if (b < 1f) {
+                    b += 0.001f;
+                }
+            }
+            if (b > 0.98f) {
+                if (g > 0.0f) {
+                    g -= 0.001f;
+                }
+                if (g < 0.02f) {
+                    r += 0.001f;
+                }
+            }
+
+        }
+        return new Vector3(r,g,b);
 
     }
 }
